@@ -43,7 +43,20 @@ public class EventDeck {
         }
         return count;
     }
+
+    public void reshuffle() {
+        while (!discardPile.isEmpty()) {
+            eventCards.add(discardPile.pop());
+        }
+        shuffle();
+    }
     public EventCard drawCard() {
-        return null;
+        if (eventCards.isEmpty()) {
+            reshuffle();
+        }
+        EventCard card = eventCards.removeLast();
+        System.out.println("Drawn:" + card.toString());
+
+        return card;
     }
 }
