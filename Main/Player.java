@@ -129,7 +129,34 @@ public class Player {
     }
 
     public int attack(Scanner userInput){
-        return 0;
+        int attackValue = 0;
+        Set<String> usedWeapons = new HashSet<>();
+        while (true){
+            printHand();
+            System.out.print("Pick your weapon(s) card <0-11*> OR <Quit> done & ready for next stage: ");
+            String weaponPick = userInput.next();
+            if (weaponPick.equalsIgnoreCase("Quit")){
+                if (attackValue > 0){
+                    break;
+                }
+                else{
+                    System.out.println("Need 1 or more weapon card");
+                    continue;
+                }
+            }
+
+            Card weapon = hand.get(Integer.parseInt(weaponPick));
+            if (usedWeapons.contains(weapon.toString())){
+                System.out.println("Weapon already used! ");
+            } else if (weapon instanceof WeaponCard){
+                attackValue += weapon.value;
+                usedWeapons.add(weapon.toString());
+                hand.remove(weapon);
+            } else{
+                System.out.println("No 'Foe' Cards");
+            }
+        }
+        return attackValue;
     }
 
 }
