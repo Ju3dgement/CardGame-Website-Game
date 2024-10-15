@@ -70,10 +70,22 @@ public class Game{
     }
 
     public void moveToNextPlayer(Scanner userInput){
-
+        System.out.println(hotSeat.getCharName() + " turn ended press <return>");
+        userInput.nextLine();
+        int currentPlayerIndex = hotSeat.getCharId() - 1;
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+        hotSeat = players[currentPlayerIndex];
     }
+
     public boolean checkWinner() {
-        return false;
+        boolean winningQuestionMark = false;
+        for (Player player : players){
+            if (player.getShields() >= 7){
+                System.out.println(player.getCharName() + " has 7 shields and won!");
+                winningQuestionMark = true;
+            }
+        }
+        return winningQuestionMark;
     }
     public void playGame(){
         while (!checkWinner()) {
