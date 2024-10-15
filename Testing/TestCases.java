@@ -45,4 +45,40 @@ public class TestCases {
         assertEquals(100, game.adventureDeck.cards.size());
         assertEquals(17, game.eventDeck.eventCards.size());
     }
+
+    @Test
+    @DisplayName("Test check cards inside")
+    public void RESP_1_Test_2(){
+        game.initializeAdventureDeck();
+        game.eventDeck.initializeDeck();
+
+        assertEquals(game.adventureDeck.countSpecificCard(new WeaponCard("D", 5)),6 );
+        assertEquals(game.adventureDeck.countSpecificCard(new WeaponCard("H", 10)),12 );
+        assertEquals(game.adventureDeck.countSpecificCard(new WeaponCard("S", 10)),16 );
+        assertEquals(game.adventureDeck.countSpecificCard(new WeaponCard("B", 15)),8 );
+        assertEquals(game.adventureDeck.countSpecificCard(new WeaponCard("L", 20)),6 );
+        assertEquals(game.adventureDeck.countSpecificCard(new WeaponCard("E", 30)),2 );
+
+        assertEquals(game.adventureDeck.countSpecificCard(new FoeCard(5)),8);
+        assertEquals(game.adventureDeck.countSpecificCard(new FoeCard(10)),7 );
+        assertEquals(game.adventureDeck.countSpecificCard(new FoeCard(15)),8 );
+        assertEquals(game.adventureDeck.countSpecificCard(new FoeCard(20)),7 );
+        assertEquals(game.adventureDeck.countSpecificCard(new FoeCard(25)),7 );
+        assertEquals(game.adventureDeck.countSpecificCard(new FoeCard(30)),4 );
+        assertEquals(game.adventureDeck.countSpecificCard(new FoeCard(35)),4 );
+        assertEquals(game.adventureDeck.countSpecificCard(new FoeCard(40)),2 );
+        assertEquals(game.adventureDeck.countSpecificCard(new FoeCard(50)),2 );
+        assertEquals(game.adventureDeck.countSpecificCard(new FoeCard(70)),1 );
+
+        assertEquals(game.eventDeck.countSpecificCard(new QCard(2)), 3 );
+        assertEquals(game.eventDeck.countSpecificCard(new QCard(3)), 4 );
+        assertEquals(game.eventDeck.countSpecificCard(new QCard(4)), 3 );
+        assertEquals(game.eventDeck.countSpecificCard(new QCard(5)), 2 );
+        assertEquals(game.eventDeck.countSpecificCard(new ECard(ECard.EventType.PLAGUE)), 1 );
+        assertEquals(game.eventDeck.countSpecificCard(new ECard(ECard.EventType.QUEENS_FAVOR)), 2 );
+        assertEquals(game.eventDeck.countSpecificCard(new ECard(ECard.EventType.PROSPERITY)), 2);
+
+    }
+
+
 }

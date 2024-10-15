@@ -60,10 +60,11 @@ public class Game{
         adventureDeck.shuffle();
     }
 
+    public void dealInitialCards() {
+    }
     public void playGame(){
         initializeAdventureDeck();
         eventDeck.initializeDeck();
-
 
     }
 }

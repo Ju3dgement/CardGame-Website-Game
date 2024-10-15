@@ -34,4 +34,14 @@ public class EventDeck {
         Collections.shuffle(eventCards);
     }
 
+    public int countSpecificCard(EventCard cardToCheck) {
+//        int count = 0;
+//        for (EventCard card : eventCards) {
+//            if (card.toString().equals(cardToCheck.toString())) {
+//                count++;
+//            }
+//        }
+//        return count;
+        return 0;
+    }
 }

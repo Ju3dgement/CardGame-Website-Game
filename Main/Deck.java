@@ -36,5 +36,15 @@ public class Deck {
         shuffle();
     }
 
+    public int countSpecificCard(Card cardToCheck) {
+//        int count = 0;
+//        for (Card card : cards) {
+//            if (card.toString().equals(cardToCheck.toString())){
+//                count++;
+//            }
+//        }
+//        return count;
+        return 0;
+    }
 
 }
