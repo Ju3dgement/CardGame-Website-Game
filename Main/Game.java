@@ -189,7 +189,65 @@ public class Game{
     }
 
     public void makeQuest(Player questMakerPlayer, QCard questCard, Scanner userInput){
-        return;
+        List<List<Card>> stageFull = new ArrayList<>();
+
+        int previousStage = 0;
+        for (int i = 0; i < this.questCard.getStages(); i++) {
+            List<Card> stage = new ArrayList<>();
+            questMakerPlayer.printHand();
+            System.out.print("Stage : " + (i + 1) + " | Pick a 'FOE' card:");
+            int foeCardPick = userInput.nextInt();
+            Card foeCard = questMakerPlayer.getHand().get(foeCardPick);
+
+            questMakerPlayer.removeCardHand(foeCard);
+            stage.add(foeCard);
+
+            Set<String> usedWeapons = new HashSet<>();
+            while (true){
+                questMakerPlayer.printHand();
+                System.out.println("Chose weapon card ('Quit' to continue): ");
+                String weaponHand = userInput.next();
+                if (weaponHand.equalsIgnoreCase("Quit")){
+                    break;
+                }
+
+                Card weaponCard = questMakerPlayer.getHand().get(Integer.parseInt(weaponHand));
+                if (usedWeapons.contains(weaponCard.toString())){
+                    System.out.println(weaponCard + " - can't use same weapon type");
+                    continue;
+                } else {
+                    stage.add(weaponCard);
+                    usedWeapons.add(weaponCard.toString());
+                    questMakerPlayer.removeCardHand(weaponCard);
+                }
+                if (questMakerPlayer.getHand().isEmpty()){
+                    break;
+                }
+            }
+            int stageValue = calculateStageValue(stage);
+            stageFull.add(stage);
+
+            if (stageValue <= previousStage){
+                System.out.println("Stage value lower than previous, pick cards again from Stage 1");
+                for (List<Card> listCards : stageFull){
+                    for (Card card : listCards){
+                        questMakerPlayer.addCard(card);
+                    }
+                }
+                this.stageFull = new ArrayList<>();
+
+                i = -1;
+                previousStage = 0;
+                continue;
+            }
+            previousStage = stageValue;
+        }
+        System.out.println(questMakerPlayer.getCharName() + " Stage has been setup");
+        this.questCard = questCard;
+        this.questMakerPlayer = questMakerPlayer;
+        this.stageFull = stageFull;
+
+        this.activeParticipants = new ArrayList<>(Arrays.asList(getOtherPlayers(questMakerPlayer)));
     }
 
     public int calculateStageValue(List<Card> stage){
