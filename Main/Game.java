@@ -391,7 +391,6 @@ public class Game {
                 }
                 askLeaveHotSeat(participant, userInput);
             }
-//            askLeaveHotSeat(activeParticipants.getLast(), userInput);
         }
         for (Player winner : activeParticipants){
             winner.addShield(shields);
