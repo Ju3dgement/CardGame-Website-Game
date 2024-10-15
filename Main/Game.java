@@ -196,7 +196,15 @@ public class Game{
             List<Card> stage = new ArrayList<>();
             questMakerPlayer.printHand();
             System.out.print("Stage : " + (i + 1) + " | Pick a 'FOE' card:");
-            int foeCardPick = userInput.nextInt();
+
+            // ADDED
+            String foePick = userInput.next();
+            if (foePick.equalsIgnoreCase("Quit")){
+                System.out.println("A stage cannot be empty");
+                continue;
+            }
+
+            int foeCardPick = Integer.parseInt(foePick);
             Card foeCard = questMakerPlayer.getHand().get(foeCardPick);
 
             questMakerPlayer.removeCardHand(foeCard);
@@ -208,6 +216,11 @@ public class Game{
                 System.out.println("Chose weapon card ('Quit' to continue): ");
                 String weaponHand = userInput.next();
                 if (weaponHand.equalsIgnoreCase("Quit")){
+                    System.out.println("Stage " + (i+1) + " cards: ");
+                    for (String nameWeapon : usedWeapons){
+                        System.out.print(nameWeapon + ", ");
+                    }
+
                     break;
                 }
 
@@ -228,7 +241,7 @@ public class Game{
             stageFull.add(stage);
 
             if (stageValue <= previousStage){
-                System.out.println("Stage value lower than previous, pick cards again from Stage 1");
+                System.out.println("Insufficient value for this stage, stage value lower than previous, pick cards again from Stage 1");
                 for (List<Card> listCards : stageFull){
                     for (Card card : listCards){
                         questMakerPlayer.addCard(card);
