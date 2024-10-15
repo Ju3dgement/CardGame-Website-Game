@@ -14,14 +14,14 @@ public class EventDeck {
         discardPile = new Stack<>();
     }
     public void initializeDeck() {
-//        addCards(new QCard(2), 3);
-//        addCards(new QCard(3), 4);
-//        addCards(new QCard(4), 3);
-//        addCards(new QCard(5), 2);
-//        addCards(new ECard(ECard.EventType.PLAGUE), 1);
-//        addCards(new ECard(ECard.EventType.QUEENS_FAVOR), 2);
-//        addCards(new ECard(ECard.EventType.PROSPERITY), 2);
-//        shuffle();
+        addCards(new QCard(2), 3);
+        addCards(new QCard(3), 4);
+        addCards(new QCard(4), 3);
+        addCards(new QCard(5), 2);
+        addCards(new ECard(ECard.EventType.PLAGUE), 1);
+        addCards(new ECard(ECard.EventType.QUEENS_FAVOR), 2);
+        addCards(new ECard(ECard.EventType.PROSPERITY), 2);
+        shuffle();
     }
 
     public void addCards(EventCard card, int count) {

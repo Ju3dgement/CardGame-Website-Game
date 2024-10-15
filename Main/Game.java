@@ -30,24 +30,24 @@ public class Game{
 
     public void addFoeCards() {
         // 50 cards
-//        addCards(new FoeCard(5), 8);
-//        addCards(new FoeCard(10), 7);
-//        addCards(new FoeCard(15), 8);
-//        addCards(new FoeCard(20), 7);
-//        addCards(new FoeCard(25), 7);
-//        addCards(new FoeCard(30), 4);
-//        addCards(new FoeCard(35), 4);
-//        addCards(new FoeCard(40), 2);
-//        addCards(new FoeCard(50), 2);
-//        addCards(new FoeCard(70), 1);
+        addCards(new FoeCard(5), 8);
+        addCards(new FoeCard(10), 7);
+        addCards(new FoeCard(15), 8);
+        addCards(new FoeCard(20), 7);
+        addCards(new FoeCard(25), 7);
+        addCards(new FoeCard(30), 4);
+        addCards(new FoeCard(35), 4);
+        addCards(new FoeCard(40), 2);
+        addCards(new FoeCard(50), 2);
+        addCards(new FoeCard(70), 1);
     }
     public void addWeaponCards() {
-//        addCards(new WeaponCard("D", 5), 6);
-//        addCards(new WeaponCard("H", 10), 12);
-//        addCards(new WeaponCard("S", 10), 16);
-//        addCards(new WeaponCard("B", 15), 8);
-//        addCards(new WeaponCard("L", 20), 6);
-//        addCards(new WeaponCard("E", 30), 2);
+        addCards(new WeaponCard("D", 5), 6);
+        addCards(new WeaponCard("H", 10), 12);
+        addCards(new WeaponCard("S", 10), 16);
+        addCards(new WeaponCard("B", 15), 8);
+        addCards(new WeaponCard("L", 20), 6);
+        addCards(new WeaponCard("E", 30), 2);
     }
     public void addCards(Card card, int count) {
         for (int i = 0; i < count; i++) {
