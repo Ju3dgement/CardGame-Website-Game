@@ -25,7 +25,9 @@ public class Player {
             shields = 0;
         }
     }
-
+    public int numberTrimNeeded(){
+        return 0;
+    }
 
     public void addShield(int numberShields) {
         shields += numberShields;

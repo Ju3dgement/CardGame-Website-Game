@@ -39,7 +39,7 @@ public class TestCases {
 
     @Test
     @DisplayName("Test initalization of event and adventure deck")
-    public void RESP_1_Test_1(){
+    public void RESP_1_TEST_1(){
         game.initializeAdventureDeck();
         game.eventDeck.initializeDeck();
         assertEquals(100, game.adventureDeck.cards.size());
@@ -48,7 +48,7 @@ public class TestCases {
 
     @Test
     @DisplayName("Test check cards inside")
-    public void RESP_1_Test_2(){
+    public void RESP_1_TEST_2(){
         game.initializeAdventureDeck();
         game.eventDeck.initializeDeck();
 
@@ -80,7 +80,7 @@ public class TestCases {
     }
     @Test
     @DisplayName("Test if 12 cards sent to each player and check deck at appropiate size after")
-    public void RESP_2_Test_1(){
+    public void RESP_2_TEST_1(){
         game.initializeAdventureDeck();
         game.eventDeck.initializeDeck();
         game.dealInitialCards();
@@ -92,7 +92,7 @@ public class TestCases {
 
     @Test
     @DisplayName("Test winner at end turn")
-    public void RESP_3_Test_1(){
+    public void RESP_3_TEST_1(){
         p1.addShield(8);
         p3.addShield(2);
         p4.addShield(66);
@@ -101,7 +101,7 @@ public class TestCases {
 
     @Test
     @DisplayName("Test no winner at all at end turn")
-    public void RESP_3_Test_2(){
+    public void RESP_3_TEST_2(){
         p1.addShield(3);
         p2.addShield(2);
         p3.addShield(6);
@@ -199,4 +199,21 @@ public class TestCases {
         assertFalse(Boolean.parseBoolean(previousHotSeat), game.hotSeat.getCharName()); // Agree when P1 != P2
         assertEquals(p2.getCharName(), game.hotSeat.getCharName()); // P2 == P2
     }
+
+    @Test
+    @DisplayName("The game computes n, the number of cards to discard by that player")
+    public void RESP_8_TEST_1(){
+        game.initializeAdventureDeck();
+        game.eventDeck.initializeDeck();
+        game.dealInitialCards();
+        ECard queensFavorCard = new ECard(ECard.EventType.QUEENS_FAVOR);
+        game.processECard(queensFavorCard, p1, new Scanner(System.in));
+
+        assertEquals(14, p1.getHand().size());
+
+        int excessCards = player.getHand().size() - 12;
+        int numberOfTrim = player.numberTrimNeeded();
+        assertEquals(excessCards, numberOfTrim);
+    }
+
 }
