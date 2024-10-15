@@ -122,5 +122,18 @@ public class TestCases {
         assertTrue(output.contains("Congrats on winning: P3"));
     }
 
+    @Test
+    @DisplayName("The game ‘draws’ (i.e., displays) the next event card")
+    public void RESP_5_TEST_1(){
+        game.initializeAdventureDeck();
+        game.eventDeck.initializeDeck();
+        game.dealInitialCards();
+        EventCard card = game.eventDeck.drawCard();
+        if (card instanceof EventCard) {
+            assert(true);
+        } else{
+            assert(false);
+        }
+    }
 
 }

@@ -43,4 +43,7 @@ public class EventDeck {
         }
         return count;
     }
+    public EventCard drawCard() {
+        return null;
+    }
 }
