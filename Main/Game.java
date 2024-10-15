@@ -147,10 +147,44 @@ public class Game{
     }
 
     public boolean attemptSponsorship(Player player, QCard questCard, Scanner userInput) {
+        if (sponsorQuest(player, questCard, userInput)) {
+//            if (player.checkEnoughFoe(questCard.getStages())) {
+                return true;
+//            } else {
+//                showNotEnoughFoeMessage(questCard);
+//                return false;
+//            }
+        }
         return false;
     }
-
+    public Player[] getOtherPlayers(Player currentPlayer) {
+        Player[] otherPlayers = new Player[players.length - 1];
+        int index = 0;
+        for (Player player : players) {
+            if (!player.equals(currentPlayer)) {
+                otherPlayers[index] = player;
+                index++;
+            }
+        }
+        return otherPlayers;
+    }
     public boolean processQCard(QCard questCard, Player currentPlayer, Scanner userInput) {
+        this.questCard = questCard;
+        questMakerPlayer = currentPlayer;
+        if (attemptSponsorship(currentPlayer, questCard, userInput)) {
+            eventDeck.discard(questCard);
+            this.questCard = questCard;
+            questMakerPlayer = currentPlayer;
+            return true;
+        }
+        for (Player player : getOtherPlayers(currentPlayer)) {
+            if (attemptSponsorship(player, questCard, userInput)) {
+                this.questCard = questCard;
+                questMakerPlayer = player;
+                return true;
+            }
+        }
+        eventDeck.discard(questCard);
         return false;
     }
 
