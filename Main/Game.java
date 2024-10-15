@@ -107,7 +107,7 @@ public class Game{
 
     public void moveToNextPlayer(Scanner userInput){
         System.out.println(hotSeat.getCharName() + " turn ended press <return>");
-//        userInput.nextLine();
+        userInput.nextLine();
         int currentPlayerIndex = hotSeat.getCharId() - 1;
         currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
         hotSeat = players[currentPlayerIndex];
@@ -124,7 +124,6 @@ public class Game{
         }
         return winningQuestionMark;
     }
-
     public void displayWinners(){
         for (Player player : winnerWinnerChickenDinner){
             System.out.println("Congrats on winning: " + player.getCharName() + " : " + player.getShields() + " Shields");
