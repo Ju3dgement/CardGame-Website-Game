@@ -45,4 +45,29 @@ public class Deck {
         return count;
     }
 
+    public Card riggedDraw(Card card) {
+        reshuffle();
+        for (int i = 0; i < cards.size(); i++) {
+            if (card.equals(cards.get(i))) {
+                cards.remove(i);
+                break;
+            }
+        }
+        return card;
+    }
+    public void riggedClearHand(List<Card> playerHand){
+        while (!playerHand.isEmpty()) {
+            Card card = playerHand.removeLast();
+            discard(card);
+        }
+    }
+    public void rigDeckTop(List<Card> riggedCards) {
+
+        for (int i = riggedCards.size() - 1; i >= 0; i--) {
+            cards.add(riggedCards.get(i));  // Add each card to the end of the deck
+            cards.remove(i);
+        }
+
+    }
+
 }

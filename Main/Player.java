@@ -53,18 +53,26 @@ public class Player {
         return Integer.compare(index1, index2);
     }
 
+    public void clearScreen() {
+        for (int i = 0; i < 30; i++) {
+            System.out.println("\n");
+        }
+    }
     public void reduceHand12(Scanner scannerInput){
+
         while (getHand().size() > 12) {
             printHand();
             System.out.println(name + " need to reduce hand size to 12 pick to discard(int):");
             int indexDelete = scannerInput.nextInt();
             removeCardHand(getHand().get(indexDelete));
+            clearScreen();
         }
+        clearScreen();
         sortHand();
     }
     public void printHand(){
         sortHand();
-        System.out.println("========================");
+        System.out.println("\n========================");
         System.out.println(name + "'s hand:");
         for (int i = 0; i < hand.size(); i++){
             System.out.print(i + ":" + hand.get(i) + " | ");
@@ -163,5 +171,37 @@ public class Player {
         }
         return attackValue;
     }
+
+
+
+
+    public boolean checkEnoughFoe(int stages){
+        int numberOfFoes = 0;
+        for (Card card : hand){
+            if (Objects.equals(card.type, "F")){
+                numberOfFoes += 1;
+            }
+        }
+        return numberOfFoes >= stages;
+    }
+
+
+    public String getNextPlayerName(){
+        if (id >= 4){
+            return "P1";
+        } else {
+            return "P" + (id + 1);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
 }

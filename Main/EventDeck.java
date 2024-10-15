@@ -47,6 +47,16 @@ public class EventDeck {
         return count;
     }
 
+    public EventCard riggedDraw(EventCard card) {
+        reshuffle();
+        for (int i = 0; i < eventCards.size(); i++) {
+            if (card.toString().equals(eventCards.get(i).toString())) {
+                eventCards.remove(i);
+                break;
+            }
+        }
+        return card;
+    }
     public void reshuffle() {
         while (!discardPile.isEmpty()) {
             eventCards.add(discardPile.pop());
