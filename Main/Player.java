@@ -43,4 +43,19 @@ public class Player {
     public List<Card> getHand() {return hand;}
     public int getCharId() {return id;}
     public String getCharName() {return name;}
+
+
+
+    private int compareWeaponType(String one, String two){
+        List<String> typeOrder = Arrays.asList("S", "H");
+        int index1 = typeOrder.indexOf(one);
+        int index2 = typeOrder.indexOf(two);
+        return Integer.compare(index1, index2);
+    }
+
+
+    public void reduceHand12(Scanner scannerInput){
+
+    }
+
 }

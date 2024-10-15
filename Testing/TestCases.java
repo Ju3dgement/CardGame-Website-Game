@@ -216,4 +216,104 @@ public class TestCases {
         assertEquals(excessCards, numberOfTrim);
     }
 
+    @Test
+    @DisplayName("displays the hand of the player that needs to be discarded")
+    public void RESP_9_TEST_1(){
+        game.initializeAdventureDeck();
+        game.eventDeck.initializeDeck();
+        game.dealInitialCards();
+
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+
+        int numberOfTrim = player.numberTrimNeeded();
+
+        String input = "0\n";
+        for (int i = 0; i < numberOfTrim; i++) {
+            input += input;
+        }
+        player.reduceHand12(new Scanner(input));
+
+        String output = outputStream.toString();
+        assertTrue(output.contains("'s hand"));
+    }
+
+    @Test
+    @DisplayName("Prompt uaser to pick valid position")
+    public void RESP_9_TEST_2(){
+        game.initializeAdventureDeck();
+        game.eventDeck.initializeDeck();
+        game.dealInitialCards();
+
+        // 13 cards
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+        game.players[0].addCard(new WeaponCard("S", 10));
+
+        int numberOfTrim = player.numberTrimNeeded();
+
+        String input = "0\n";  // Entering a valid position
+        for (int i = 0; i < numberOfTrim; i++) {
+            input += input;
+        }
+
+        player.reduceHand12(new Scanner(input));
+
+        String output = outputStream.toString();
+        assertTrue(output.contains("pick to discard(int):"));
+    }
+    @Test
+    @DisplayName("Test delets the card and display the new hand")
+    public void RESP_9_TEST_3(){
+        game.initializeAdventureDeck();
+        game.eventDeck.initializeDeck();
+        // 14 cards added
+        p1.addCard(new FoeCard( 5));
+        p1.addCard(new FoeCard( 5));
+        p1.addCard(new FoeCard(15));
+        p1.addCard(new FoeCard(15));
+        p1.addCard(new FoeCard( 20));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("S", 10));
+        p1.addCard(new WeaponCard("S", 10));
+        p1.addCard(new WeaponCard("H", 10));
+        p1.addCard(new WeaponCard("H", 10));
+        p1.addCard(new WeaponCard("B", 15));
+        p1.addCard(new WeaponCard("B", 15));
+        p1.addCard(new WeaponCard("L", 20));
+
+        int numberOfTrim = p1.numberTrimNeeded();
+
+        String input = "0\n0\n";
+        for (int i = 0; i < numberOfTrim; i++) {
+            input += input;
+        }
+
+        player.reduceHand12(new Scanner(input));
+
+        assertEquals(12, player.getHand().size());
+    }
+
 }
