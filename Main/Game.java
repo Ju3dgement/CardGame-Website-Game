@@ -84,18 +84,17 @@ public class Game{
             if (player.getShields() >= 7){
                 System.out.println(player.getCharName() + " has 7 shields and won!");
                 winningQuestionMark = true;
-//                winnerWinnerChickenDinner.add(player);
+                winnerWinnerChickenDinner.add(player);
             }
         }
-        return false;
-//        return winningQuestionMark;
+        return winningQuestionMark;
     }
 
-//    public void displayWinners(){
-//        for (Player player : winnerWinnerChickenDinner){
-//            System.out.println("Congrats on winning: " + player.getCharName() + " : " + player.getShields() + " Shields");
-//        }
-//    }
+    public void displayWinners(){
+        for (Player player : winnerWinnerChickenDinner){
+            System.out.println("Congrats on winning: " + player.getCharName() + " : " + player.getShields() + " Shields");
+        }
+    }
     public void playGame(){
         while (!checkWinner(scan)) {
             System.out.println("Hot Seat: " + hotSeat.getCharName());
@@ -104,7 +103,7 @@ public class Game{
             moveToNextPlayer(scan);
         }
 
-//        displayWinners();
+        displayWinners();
 
     }
 }

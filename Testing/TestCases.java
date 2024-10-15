@@ -116,7 +116,7 @@ public class TestCases {
         p3.addShield(8);
         p4.addShield(1);
         game.checkWinner(new Scanner(""));
-//        game.displayWinners();
+        game.displayWinners();
         String output = outputStream.toString();
         assertTrue(output.contains("Congrats on winning: P2"));
         assertTrue(output.contains("Congrats on winning: P3"));
