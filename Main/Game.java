@@ -7,7 +7,6 @@ public class Game{
     public Player[] players;
     public EventDeck eventDeck;
     public Player hotSeat;
-
     public Scanner scan;
     public List<List<Card>> stageFull = new ArrayList<>();
     public QCard questCard;
@@ -108,7 +107,7 @@ public class Game{
 
     public void moveToNextPlayer(Scanner userInput){
         System.out.println(hotSeat.getCharName() + " turn ended press <return>");
-        userInput.nextLine();
+//        userInput.nextLine();
         int currentPlayerIndex = hotSeat.getCharId() - 1;
         currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
         hotSeat = players[currentPlayerIndex];

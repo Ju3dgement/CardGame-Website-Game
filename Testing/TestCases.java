@@ -187,4 +187,16 @@ public class TestCases {
         }
     }
 
+    @Test
+    @DisplayName("Test game indicate turn ended")
+    public void RESP_7_TEST_1() {
+        String previousHotSeat = p1.getCharName();
+        String input = "\n";
+        Scanner autoInput = new Scanner(input);
+        game.moveToNextPlayer(autoInput);
+        String output = outputStream.toString();
+        assertTrue(output.contains("turn ended"));
+        assertFalse(Boolean.parseBoolean(previousHotSeat), game.hotSeat.getCharName()); // Agree when P1 != P2
+        assertEquals(p2.getCharName(), game.hotSeat.getCharName()); // P2 == P2
+    }
 }
