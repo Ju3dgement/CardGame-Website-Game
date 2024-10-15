@@ -188,6 +188,17 @@ public class Game{
         return false;
     }
 
+    public void makeQuest(Player questMakerPlayer, QCard questCard, Scanner userInput){
+        return;
+    }
+
+    public int calculateStageValue(List<Card> stage){
+        int stagevalue = 0;
+        for (Card card: stage){
+            stagevalue += card.value;
+        }
+        return stagevalue;
+    }
 
     public void playGame(){
         while (!checkWinner(scan)) {

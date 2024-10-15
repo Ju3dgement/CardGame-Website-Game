@@ -345,4 +345,40 @@ public class TestCases {
         boolean result = game.processQCard(card, p1, autoInput);
         assertFalse(result);
     }
+    @Test
+    @DisplayName("Sets up a valid quest")
+    void RESP_12_TEST_01(){
+        String questSetup = "0\n1\nQuit\n";
+        Scanner input = new Scanner(questSetup);
+        QCard questCard = new QCard(2);
+        game.questMakerPlayer = p1;
+
+        p1.addCard(new FoeCard( 5));
+        p1.addCard(new FoeCard( 5));
+        p1.addCard(new FoeCard(15));
+        p1.addCard(new FoeCard(15));
+        p1.addCard(new FoeCard( 20));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("S", 10));
+        p1.addCard(new WeaponCard("S", 10));
+        p1.addCard(new WeaponCard("H", 10));
+        p1.addCard(new WeaponCard("H", 10));
+        p1.addCard(new WeaponCard("B", 15));
+        p1.addCard(new WeaponCard("B", 15));
+        p1.addCard(new WeaponCard("L", 20));
+
+        game.processQCard(questCard, game.questMakerPlayer, input);
+
+        // 5FOE -> dagger -> Quit -> 5FOE -> BattleAxe -> Quit
+        Scanner makeQuestInput = new Scanner("0\n4\nQuit\n0\n9\nQUit\n");
+        game.makeQuest(game.questMakerPlayer, questCard, makeQuestInput);
+
+        String output = outputStream.toString();
+        assertTrue(output.contains("Pick a 'FOE' card:"));
+        assertEquals(questCard, game.questCard);
+        assertFalse(game.stageFull.isEmpty());
+
+
+    }
 }
