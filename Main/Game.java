@@ -98,7 +98,16 @@ public class Game{
     }
 
     public boolean sponsorQuest(Player player, QCard questCard, Scanner userInput) {
-        return false;
+        player.printHand();
+        System.out.println("QCard: " + questCard.toString());
+        System.out.println(player.getCharName() + " do you want to sponsor this card (0 = Yes, 1 = No): ");
+        int userInputText = userInput.nextInt();
+        if (userInputText == 0) {
+            return true;
+        } else {
+//            askLeaveHotSeat(player, userInput);
+            return false;
+        }
     }
 
     public void dealInitialCards() {

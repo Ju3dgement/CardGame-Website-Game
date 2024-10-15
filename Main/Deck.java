@@ -17,7 +17,6 @@ public class Deck {
     public void shuffle() {
         Collections.shuffle(cards);
     }
-
     public Card drawCard() {
         if (cards.isEmpty()) {
             reshuffle();
