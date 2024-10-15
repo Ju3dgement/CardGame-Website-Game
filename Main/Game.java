@@ -16,6 +16,7 @@ public class Game{
 
     public List<Player> activeParticipants;
 
+    public List<Player> winnerWinnerChickenDinner = new ArrayList<>();
     public Game() {
         adventureDeck = new Deck();
         eventDeck = new EventDeck();
@@ -77,23 +78,33 @@ public class Game{
         hotSeat = players[currentPlayerIndex];
     }
 
-    public boolean checkWinner() {
+    public boolean checkWinner(Scanner userInput) {
         boolean winningQuestionMark = false;
         for (Player player : players){
             if (player.getShields() >= 7){
                 System.out.println(player.getCharName() + " has 7 shields and won!");
                 winningQuestionMark = true;
+//                winnerWinnerChickenDinner.add(player);
             }
         }
-        return winningQuestionMark;
+        return false;
+//        return winningQuestionMark;
     }
+
+//    public void displayWinners(){
+//        for (Player player : winnerWinnerChickenDinner){
+//            System.out.println("Congrats on winning: " + player.getCharName() + " : " + player.getShields() + " Shields");
+//        }
+//    }
     public void playGame(){
-        while (!checkWinner()) {
+        while (!checkWinner(scan)) {
             System.out.println("Hot Seat: " + hotSeat.getCharName());
             initializeAdventureDeck();
             eventDeck.initializeDeck();
             moveToNextPlayer(scan);
         }
+
+//        displayWinners();
 
     }
 }

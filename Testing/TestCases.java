@@ -96,18 +96,31 @@ public class TestCases {
         p1.addShield(8);
         p3.addShield(2);
         p4.addShield(66);
-        assertTrue(game.checkWinner());
+        assertTrue(game.checkWinner(new Scanner("")));
     }
 
-//    @Test
-//    @DisplayName("Test no winner at all at end turn")
-//    public void RESP_3_Test_2(){
-//        p1.addShield(3);
-//        p2.addShield(2);
-//        p3.addShield(6);
-//        p3.addShield(1);
-//        assertFalse(game.checkWinner());
-//    }
+    @Test
+    @DisplayName("Test no winner at all at end turn")
+    public void RESP_3_Test_2(){
+        p1.addShield(3);
+        p2.addShield(2);
+        p3.addShield(6);
+        p4.addShield(1);
+        assertFalse(game.checkWinner(new Scanner("")));
+    }
+    @Test
+    @DisplayName("Test display winner and terminates")
+    public void RESP_4_TEST_1(){
+        p1.addShield(3);
+        p2.addShield(9);
+        p3.addShield(8);
+        p4.addShield(1);
+        game.checkWinner(new Scanner(""));
+//        game.displayWinners();
+        String output = outputStream.toString();
+        assertTrue(output.contains("Congrats on winning: P2"));
+        assertTrue(output.contains("Congrats on winning: P3"));
+    }
 
 
 }
