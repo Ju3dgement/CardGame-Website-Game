@@ -90,4 +90,24 @@ public class TestCases {
         assertEquals(52, game.adventureDeck.cards.size());
     }
 
+    @Test
+    @DisplayName("Test winner at end turn")
+    public void RESP_3_Test_1(){
+        p1.addShield(8);
+        p3.addShield(2);
+        p4.addShield(66);
+        assertTrue(game.checkWinner());
+    }
+
+//    @Test
+//    @DisplayName("Test no winner at all at end turn")
+//    public void RESP_3_Test_2(){
+//        p1.addShield(3);
+//        p2.addShield(2);
+//        p3.addShield(6);
+//        p3.addShield(1);
+//        assertFalse(game.checkWinner());
+//    }
+
+
 }

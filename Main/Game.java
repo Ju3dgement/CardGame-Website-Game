@@ -49,6 +49,7 @@ public class Game{
         addCards(new WeaponCard("L", 20), 6);
         addCards(new WeaponCard("E", 30), 2);
     }
+
     public void addCards(Card card, int count) {
         for (int i = 0; i < count; i++) {
             adventureDeck.addCard(card);
@@ -67,9 +68,20 @@ public class Game{
             }
         }
     }
+
+    public void moveToNextPlayer(Scanner userInput){
+
+    }
+    public boolean checkWinner() {
+        return false;
+    }
     public void playGame(){
-        initializeAdventureDeck();
-        eventDeck.initializeDeck();
+        while (!checkWinner()) {
+            System.out.println("Hot Seat: " + hotSeat.getCharName());
+            initializeAdventureDeck();
+            eventDeck.initializeDeck();
+            moveToNextPlayer(scan);
+        }
 
     }
 }

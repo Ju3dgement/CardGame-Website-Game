@@ -19,8 +19,10 @@ public class Player {
         }
     }
 
-    // Adders
-    public void addShield() {shields++;}
+
+    public void addShield(int numberShields) {
+        shields += numberShields;
+    }
     public void addCard(Card card) {hand.add(card);}
 
     // Getters
