@@ -7,11 +7,21 @@ public class Player {
     private final String name;
     private int shields;
     private List<Card> hand;
+    private boolean winLose = false;
+    private int currentDamage;
+
+    public int sponsorCardDiscarded;
     public Player(int id, String name) {
         this.id = id;
         this.name = name;
         this.shields = 0;
         this.hand = new ArrayList<>();
+    }
+    public boolean getWinLose(){
+        return winLose;
+    }
+    public int getCurrentDamage(){
+        return currentDamage;
     }
     public void discardExcessCards() {
         while (hand.size() > 12) {
@@ -19,6 +29,9 @@ public class Player {
         }
     }
 
+    public void setWinLose(boolean flag){
+        winLose = flag;
+    }
     public void removeShield(){
         shields--;
         if (shields < 0) {
@@ -53,18 +66,26 @@ public class Player {
         return Integer.compare(index1, index2);
     }
 
+    public void clearScreen() {
+        for (int i = 0; i < 30; i++) {
+            System.out.println("\n");
+        }
+    }
     public void reduceHand12(Scanner scannerInput){
+
         while (getHand().size() > 12) {
             printHand();
             System.out.println(name + " need to reduce hand size to 12 pick to discard(int):");
             int indexDelete = scannerInput.nextInt();
             removeCardHand(getHand().get(indexDelete));
+            clearScreen();
         }
+        clearScreen();
         sortHand();
     }
     public void printHand(){
         sortHand();
-        System.out.println("========================");
+        System.out.println("\n========================");
         System.out.println(name + "'s hand:");
         for (int i = 0; i < hand.size(); i++){
             System.out.print(i + ":" + hand.get(i) + " | ");
@@ -161,7 +182,31 @@ public class Player {
         for (String weaponName : usedWeapons){
             System.out.print(weaponName + ", ");
         }
+
+        currentDamage = attackValue;
         return attackValue;
     }
+
+    public boolean checkEnoughFoe(int stages){
+        int numberOfFoes = 0;
+        for (Card card : hand){
+            if (Objects.equals(card.type, "F")){
+                numberOfFoes += 1;
+            }
+        }
+        return numberOfFoes >= stages;
+    }
+
+
+    public String getNextPlayerName(){
+        if (id >= 4){
+            return "P1";
+        } else {
+            return "P" + (id + 1);
+        }
+    }
+
+
+
 
 }
