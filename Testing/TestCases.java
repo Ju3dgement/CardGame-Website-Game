@@ -316,4 +316,15 @@ public class TestCases {
         assertEquals(12, player.getHand().size());
     }
 
+    @Test
+    @DisplayName("Test ask user if want to sponsor quest")
+    void RESP_10_TEST_01(){
+        QCard card = new QCard(3);
+        String input = "0\n";
+        Scanner autoInput = new Scanner(input);
+        game.sponsorQuest(player, card, autoInput);
+        boolean assertion = outputStream.toString().contains("do you want to sponsor this card (0 = Yes, 1 = No):");
+        assertTrue(assertion);
+    }
+
 }

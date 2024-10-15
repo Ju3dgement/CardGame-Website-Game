@@ -97,6 +97,10 @@ public class Game{
         eventDeck.discard(eventCard);
     }
 
+    public boolean sponsorQuest(Player player, QCard questCard, Scanner userInput) {
+        return false;
+    }
+
     public void dealInitialCards() {
         for (Player player : players) {
             for (int i = 0; i < 12; i++) {
