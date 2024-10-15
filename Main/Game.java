@@ -97,18 +97,6 @@ public class Game{
         eventDeck.discard(eventCard);
     }
 
-    public boolean sponsorQuest(Player player, QCard questCard, Scanner userInput) {
-        player.printHand();
-        System.out.println("QCard: " + questCard.toString());
-        System.out.println(player.getCharName() + " do you want to sponsor this card (0 = Yes, 1 = No): ");
-        int userInputText = userInput.nextInt();
-        if (userInputText == 0) {
-            return true;
-        } else {
-//            askLeaveHotSeat(player, userInput);
-            return false;
-        }
-    }
 
     public void dealInitialCards() {
         for (Player player : players) {
@@ -142,6 +130,31 @@ public class Game{
             System.out.println("Congrats on winning: " + player.getCharName() + " : " + player.getShields() + " Shields");
         }
     }
+
+
+
+    public boolean sponsorQuest(Player player, QCard questCard, Scanner userInput) {
+        player.printHand();
+        System.out.println("QCard: " + questCard.toString());
+        System.out.println(player.getCharName() + " do you want to sponsor this card (0 = Yes, 1 = No): ");
+        int userInputText = userInput.nextInt();
+        if (userInputText == 0) {
+            return true;
+        } else {
+//            askLeaveHotSeat(player, userInput);
+            return false;
+        }
+    }
+
+    public boolean attemptSponsorship(Player player, QCard questCard, Scanner userInput) {
+        return false;
+    }
+
+    public boolean processQCard(QCard questCard, Player currentPlayer, Scanner userInput) {
+        return false;
+    }
+
+
     public void playGame(){
         while (!checkWinner(scan)) {
             System.out.println("Hot Seat: " + hotSeat.getCharName());

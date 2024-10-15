@@ -327,4 +327,22 @@ public class TestCases {
         assertTrue(assertion);
     }
 
+    @Test
+    @DisplayName("A sponsor has been found")
+    void RESP_11_TEST_01(){
+        QCard card = new QCard(3);
+        String input = "0\n";
+        Scanner autoInput = new Scanner(input);
+        boolean result = game.processQCard(card, p1, autoInput);
+        assertTrue(result);
+    }
+    @Test
+    @DisplayName("All decline sponsor quest")
+    void RESP_11_TEST_02(){
+        QCard card = new QCard(3);
+        String input = "1\n1\n1\n1\n";
+        Scanner autoInput = new Scanner(input);
+        boolean result = game.processQCard(card, p1, autoInput);
+        assertFalse(result);
+    }
 }
