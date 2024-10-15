@@ -78,7 +78,6 @@ public class TestCases {
         assertEquals(game.eventDeck.countSpecificCard(new ECard(ECard.EventType.QUEENS_FAVOR)), 2 );
         assertEquals(game.eventDeck.countSpecificCard(new ECard(ECard.EventType.PROSPERITY)), 2);
     }
-
     @Test
     @DisplayName("Test if 12 cards sent to each player and check deck at appropiate size after")
     public void RESP_2_Test_1(){

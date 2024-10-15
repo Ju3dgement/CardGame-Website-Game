@@ -61,6 +61,11 @@ public class Game{
     }
 
     public void dealInitialCards() {
+        for (Player player : players) {
+            for (int i = 0; i < 12; i++) {
+                player.addCard(adventureDeck.drawCard());
+            }
+        }
     }
     public void playGame(){
         initializeAdventureDeck();
