@@ -128,5 +128,8 @@ public class Player {
         hand.remove(card);
     }
 
+    public int attack(Scanner userInput){
+        return 0;
+    }
 
 }

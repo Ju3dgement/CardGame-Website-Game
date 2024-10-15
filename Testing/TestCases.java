@@ -2,6 +2,8 @@ package Testing;
 
 import Main.*;
 import org.junit.jupiter.api.*;
+
+import javax.print.attribute.standard.DateTimeAtCompleted;
 import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -463,4 +465,21 @@ public class TestCases {
         assertTrue(output.contains("Insufficient value for this stage"));
     }
 
+    @Test
+    @DisplayName("displays the hand when attacking")
+    void RESP_14_TEST_01(){
+        game.questMakerPlayer = p1;
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("B", 15));
+        p1.addCard(new WeaponCard("B", 15));
+        p1.addCard(new WeaponCard("E", 30));
+        p1.addCard(new WeaponCard("E", 30));
+
+        Scanner attackInput = new Scanner("0\nQuit\n");
+        p1.attack(attackInput);
+        String output = outputStream.toString();
+        assertTrue(output.contains("Pick your weapon(s) card"));
+    }
 }

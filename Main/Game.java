@@ -263,6 +263,7 @@ public class Game{
         this.activeParticipants = new ArrayList<>(Arrays.asList(getOtherPlayers(questMakerPlayer)));
     }
 
+
     public int calculateStageValue(List<Card> stage){
         int stagevalue = 0;
         for (Card card: stage){
