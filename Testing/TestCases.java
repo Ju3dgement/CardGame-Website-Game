@@ -482,4 +482,39 @@ public class TestCases {
         String output = outputStream.toString();
         assertTrue(output.contains("Pick your weapon(s) card"));
     }
+
+    @Test
+    @DisplayName("repeat show error while attacking")
+    void RESP_15_TEST_01(){
+        game.questMakerPlayer = p1;
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("B", 15));
+        p1.addCard(new WeaponCard("B", 15));
+        p1.addCard(new WeaponCard("E", 30));
+        p1.addCard(new WeaponCard("E", 30));
+
+        Scanner attackInput = new Scanner("0\n0\n3\nQuit");
+        p1.attack(attackInput);
+        String output = outputStream.toString();
+        assertTrue(output.contains("Weapon already used!"));
+    }
+    @Test
+    @DisplayName("Quit is Entered and weapons are displayed")
+    void RESP_15_TEST_02(){
+        game.questMakerPlayer = p1;
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("B", 15));
+        p1.addCard(new WeaponCard("B", 15));
+        p1.addCard(new WeaponCard("E", 30));
+        p1.addCard(new WeaponCard("E", 30));
+
+        Scanner attackInput = new Scanner("0\nQuit\n");
+        p1.attack(attackInput);
+        String output = outputStream.toString();
+        assertTrue(output.contains("Pick your weapon(s) card"));
+    }
 }
