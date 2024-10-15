@@ -138,7 +138,7 @@ public class TestCases {
 
     @Test
     @DisplayName("Test drawing a 'Plague Card Event'")
-    public void testPlagueEvent() {
+    public void RESP_6_TEST_1() {
         game.initializeAdventureDeck();
         game.eventDeck.initializeDeck();
         game.dealInitialCards();
@@ -154,7 +154,7 @@ public class TestCases {
     }
     @Test
     @DisplayName("Test drawing a 'Queens Favor Card Event'")
-    public void testQueensFavorEvent() {
+    public void RESP_6_TEST_2() {
         game.initializeAdventureDeck();
         game.eventDeck.initializeDeck();
         game.dealInitialCards();
@@ -168,7 +168,7 @@ public class TestCases {
     }
     @Test
     @DisplayName("Test drawing a 'Prosperity Card Event'")
-    public void testProsperityEvent() {
+    public void RESP_6_TEST_3() {
         game.initializeAdventureDeck();
         game.eventDeck.initializeDeck();
         game.dealInitialCards();

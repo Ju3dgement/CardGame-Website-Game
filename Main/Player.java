@@ -19,6 +19,13 @@ public class Player {
         }
     }
 
+    public void removeShield(){
+        shields--;
+        if (shields < 0) {
+            shields = 0;
+        }
+    }
+
 
     public void addShield(int numberShields) {
         shields += numberShields;

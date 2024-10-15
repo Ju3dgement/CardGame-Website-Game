@@ -63,7 +63,39 @@ public class Game{
     }
 
     public void processECard(ECard eventCard, Player currentPlayer, Scanner userInput) {
+        switch (eventCard.getEventType()) {
+            case PLAGUE:
+                System.out.println("Drew 'Plague' " + currentPlayer.getCharName() + " lost 2 shields");
+                currentPlayer.removeShield();
+                currentPlayer.removeShield();
+//                askLeaveHotSeat(currentPlayer, userInput);
+                break;
+            case QUEENS_FAVOR:
+                System.out.println("Drew 'Queens Favor' " + currentPlayer.getCharName() + " drawing 2 cards");
+                currentPlayer.addCard(adventureDeck.drawCard());
+                currentPlayer.addCard(adventureDeck.drawCard());
+//                currentPlayer.reduceHand12(userInput);
+//                askLeaveHotSeat(currentPlayer, userInput);
+                break;
+            case PROSPERITY:
+                int currentPlayerIndex = currentPlayer.getCharId() - 1;
+                System.out.println(currentPlayer.getCharName() + " drew a 'Prosperity'. each player draws 2 cards.");
+                currentPlayer.addCard(adventureDeck.drawCard());
+                currentPlayer.addCard(adventureDeck.drawCard());
+//                currentPlayer.reduceHand12(userInput);
+//                askLeaveHotSeat(currentPlayer, userInput);
 
+                for (int i = 1; i < players.length; i++) {
+                    Player player = players[(currentPlayerIndex + i) % players.length];
+                    System.out.println(currentPlayer.getCharName() + " drew a 'Prosperity' each player draws 2 cards");
+                    player.addCard(adventureDeck.drawCard());
+                    player.addCard(adventureDeck.drawCard());
+//                    player.reduceHand12(userInput);
+//                    askLeaveHotSeat(player, userInput);
+                }
+                break;
+        }
+        eventDeck.discard(eventCard);
     }
 
     public void dealInitialCards() {

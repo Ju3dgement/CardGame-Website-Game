@@ -30,6 +30,9 @@ public class EventDeck {
         }
     }
 
+    public void discard(EventCard card) {
+        discardPile.push(card);
+    }
     public void shuffle() {
         Collections.shuffle(eventCards);
     }
