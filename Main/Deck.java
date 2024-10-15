@@ -1,37 +1,9 @@
 package Main;
-
 import java.util.*;
 
-abstract class Card {
-    protected String type;
-    protected int value;
-
-    public Card(String type, int value) {
-        this.type = type;
-        this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return type + value;
-    }
-}
-
-class FoeCard extends Card {
-    public FoeCard(int value) {
-        super("F", value);
-    }
-}
-
-class WeaponCard extends Card {
-    public WeaponCard(String type, int value) {
-        super(type, value);
-    }
-}
-
-class Deck {
-    private List<Card> cards;
-    private Stack<Card> discardPile;
+public class Deck {
+    public List<Card> cards;
+    public Stack<Card> discardPile;
 
     public Deck() {
         cards = new ArrayList<>();
@@ -50,9 +22,9 @@ class Deck {
         if (cards.isEmpty()) {
             reshuffle();
         }
-        return cards.remove(cards.size() - 1);
-    }
+        return cards.removeLast();
 
+    }
     public void discard(Card card) {
         discardPile.push(card);
     }
@@ -63,4 +35,6 @@ class Deck {
         }
         shuffle();
     }
+
+
 }
