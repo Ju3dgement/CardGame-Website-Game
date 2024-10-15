@@ -378,7 +378,89 @@ public class TestCases {
         assertTrue(output.contains("Pick a 'FOE' card:"));
         assertEquals(questCard, game.questCard);
         assertFalse(game.stageFull.isEmpty());
-
-
     }
+
+    @Test
+    @DisplayName("until the selected card is valid ")
+    void RESP_13_TEST_01(){
+        String questSetup = "0\n1\nQuit\n";
+        Scanner input = new Scanner(questSetup);
+        QCard questCard = new QCard(2);
+        game.questMakerPlayer = p1;
+
+        p1.addCard(new FoeCard( 5));
+        p1.addCard(new FoeCard( 5));
+        p1.addCard(new FoeCard(15));
+        p1.addCard(new FoeCard(15));
+        p1.addCard(new FoeCard( 20));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("S", 10));
+        p1.addCard(new WeaponCard("S", 10));
+        p1.addCard(new WeaponCard("H", 10));
+        p1.addCard(new WeaponCard("H", 10));
+        p1.addCard(new WeaponCard("B", 15));
+        p1.addCard(new WeaponCard("B", 15));
+        p1.addCard(new WeaponCard("L", 20));
+        game.processQCard(questCard, game.questMakerPlayer, input);
+
+        // 5FOE -> dagger -> Quit -> 5FOE -> BattleAxe -> Quit
+        Scanner makeQuestInput = new Scanner("0\n4\nQuit\n0\n9\nQUit\n");
+        game.makeQuest(game.questMakerPlayer, questCard, makeQuestInput);
+        String output = outputStream.toString();
+        assertTrue(output.contains("Stage 1 cards: "));
+    }
+
+    @Test
+    @DisplayName("Test A stage cannot be empty ")
+    void RESP_13_TEST_02(){
+        String questSetup = "0\n1\nQuit\n";
+        Scanner input = new Scanner(questSetup);
+        QCard questCard = new QCard(2);
+        game.questMakerPlayer = p1;
+
+        p1.addCard(new FoeCard( 5));
+        p1.addCard(new FoeCard( 5));
+        p1.addCard(new FoeCard(15));
+        p1.addCard(new FoeCard(15));
+        p1.addCard(new FoeCard( 20));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("S", 10));
+        p1.addCard(new WeaponCard("S", 10));
+        p1.addCard(new WeaponCard("H", 10));
+        p1.addCard(new WeaponCard("H", 10));
+        p1.addCard(new WeaponCard("B", 15));
+        game.processQCard(questCard, game.questMakerPlayer, input);
+
+        // 5FOE -> dagger -> Quit -> 5FOE -> BattleAxe -> Quit
+        Scanner makeQuestInput = new Scanner("Quit\n0\n4\nQuit\n0\n8\nQUit\n");
+        game.makeQuest(game.questMakerPlayer, questCard, makeQuestInput);
+        String output = outputStream.toString();
+        assertTrue(output.contains("A stage cannot be empty"));
+    }
+
+    @Test
+    @DisplayName("Test insufficent value previous stage ")
+    void RESP_13_TEST_03(){
+        String questSetup = "0\n1\nQuit\n";
+        Scanner input = new Scanner(questSetup);
+        QCard questCard = new QCard(2);
+        game.questMakerPlayer = p1;
+
+        p1.addCard(new FoeCard( 5));
+        p1.addCard(new FoeCard( 10));
+        p1.addCard(new FoeCard(15));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("D", 5));
+        p1.addCard(new WeaponCard("B", 15));
+        game.processQCard(questCard, game.questMakerPlayer, input);
+
+        // 10FOE -> Quit -> 5FOE -> QUIT(INSUFF) -> <Start stage 1> -> 5FOE -> Quit -> 10FOE -> QUIT
+        Scanner makeQuestInput = new Scanner("1\nQuit\n0\nQuit\n0\nQuit\n0\nQuit\n");
+        game.makeQuest(game.questMakerPlayer, questCard, makeQuestInput);
+        String output = outputStream.toString();
+        assertTrue(output.contains("Insufficient value for this stage"));
+    }
+
 }
