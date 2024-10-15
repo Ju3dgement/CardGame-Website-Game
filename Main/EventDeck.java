@@ -35,13 +35,12 @@ public class EventDeck {
     }
 
     public int countSpecificCard(EventCard cardToCheck) {
-//        int count = 0;
-//        for (EventCard card : eventCards) {
-//            if (card.toString().equals(cardToCheck.toString())) {
-//                count++;
-//            }
-//        }
-//        return count;
-        return 0;
+        int count = 0;
+        for (EventCard card : eventCards) {
+            if (card.toString().equals(cardToCheck.toString())) {
+                count++;
+            }
+        }
+        return count;
     }
 }

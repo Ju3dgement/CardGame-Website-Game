@@ -37,14 +37,13 @@ public class Deck {
     }
 
     public int countSpecificCard(Card cardToCheck) {
-//        int count = 0;
-//        for (Card card : cards) {
-//            if (card.toString().equals(cardToCheck.toString())){
-//                count++;
-//            }
-//        }
-//        return count;
-        return 0;
+        int count = 0;
+        for (Card card : cards) {
+            if (card.toString().equals(cardToCheck.toString())){
+                count++;
+            }
+        }
+        return count;
     }
 
 }
