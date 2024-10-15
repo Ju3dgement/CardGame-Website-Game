@@ -26,7 +26,11 @@ public class Player {
         }
     }
     public int numberTrimNeeded(){
-        return 0;
+        if (hand.size() > 12){
+            return hand.size() - 12;
+        } else{
+            return 0;
+        }
     }
 
     public void addShield(int numberShields) {
