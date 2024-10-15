@@ -62,6 +62,10 @@ public class Game{
         adventureDeck.shuffle();
     }
 
+    public void processECard(ECard eventCard, Player currentPlayer, Scanner userInput) {
+
+    }
+
     public void dealInitialCards() {
         for (Player player : players) {
             for (int i = 0; i < 12; i++) {
@@ -104,6 +108,5 @@ public class Game{
         }
 
         displayWinners();
-
     }
 }

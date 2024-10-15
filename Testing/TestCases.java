@@ -136,4 +136,55 @@ public class TestCases {
         }
     }
 
+    @Test
+    @DisplayName("Test drawing a 'Plague Card Event'")
+    public void testPlagueEvent() {
+        game.initializeAdventureDeck();
+        game.eventDeck.initializeDeck();
+        game.dealInitialCards();
+        String inputScanner = "\n";
+        Player player = game.players[0];
+        player.addShield(4);
+        int initialShields = player.getShields();
+
+        ECard plagueCard = new ECard(ECard.EventType.PLAGUE);
+        game.processECard(plagueCard, player, new Scanner(inputScanner));
+
+        assertEquals(initialShields - 2, player.getShields());
+    }
+    @Test
+    @DisplayName("Test drawing a 'Queens Favor Card Event'")
+    public void testQueensFavorEvent() {
+        game.initializeAdventureDeck();
+        game.eventDeck.initializeDeck();
+        game.dealInitialCards();
+        Player player = game.players[0];
+        int initialHandSize = player.getHand().size();
+
+        ECard queensFavorCard = new ECard(ECard.EventType.QUEENS_FAVOR);
+        game.processECard(queensFavorCard, player, new Scanner(System.in));
+
+        assertEquals(14, initialHandSize + 2, player.getHand().size());
+    }
+    @Test
+    @DisplayName("Test drawing a 'Prosperity Card Event'")
+    public void testProsperityEvent() {
+        game.initializeAdventureDeck();
+        game.eventDeck.initializeDeck();
+        game.dealInitialCards();
+        Player[] players = game.players;
+        int[] initialHandSizes = new int[players.length];
+
+        for (int i = 0; i < players.length; i++) {
+            initialHandSizes[i] = players[i].getHand().size();
+        }
+
+        ECard prosperityCard = new ECard(ECard.EventType.PROSPERITY);
+        game.processECard(prosperityCard, players[0], new Scanner(System.in));
+
+        for (int i = 0; i < players.length; i++) {
+            assertEquals(14, initialHandSizes[i] + 2, players[i].getHand().size());
+        }
+    }
+
 }
