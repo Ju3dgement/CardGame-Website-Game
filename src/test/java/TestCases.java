@@ -1,6 +1,3 @@
-package Testing;
-
-import Main.*;
 import org.junit.jupiter.api.*;
 
 import java.util.Scanner;
@@ -560,7 +557,7 @@ public class TestCases {
         p2.addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
         p2.addCard(game.adventureDeck.riggedDraw(new WeaponCard("E", 30)));
 
-//        p3.addCard(game.adventureDeck.riggedDraw(new FoeCard( 5)));
+        p3.addCard(game.adventureDeck.riggedDraw(new FoeCard( 5)));
         p3.addCard(game.adventureDeck.riggedDraw(new FoeCard( 5)));
         p3.addCard(game.adventureDeck.riggedDraw(new FoeCard( 5)));
         p3.addCard(game.adventureDeck.riggedDraw(new FoeCard( 15)));

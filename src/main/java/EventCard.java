@@ -1,5 +1,3 @@
-package Main;
-
 public abstract class EventCard {
     protected String type;
 

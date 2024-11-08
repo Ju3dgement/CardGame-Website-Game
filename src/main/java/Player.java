@@ -1,5 +1,3 @@
-package Main;
-
 import java.util.*;
 
 public class Player {
