@@ -170,6 +170,9 @@ public class Game {
         this.questMakerPlayer = player;
     }
 
+    public void drawECardInfoSetter(Player player, QCard questCard){
+    }
+
     public boolean processQCard(QCard questCard, Player currentPlayer, Scanner userInput) {
         this.questCard = questCard;
         questMakerPlayer = currentPlayer;
@@ -322,6 +325,7 @@ public class Game {
             currentPlayer.addCard(adventureDeck.drawCard());
         }
         System.out.println("Sponsor draw");
+//        currentPlayer.sponsorCardDiscarded = 0;
 //        currentPlayer.reduceHand12(userInput);
     }
     public boolean doingAStage(Player player, int stageValue, Scanner userInput) {
@@ -347,7 +351,7 @@ public class Game {
             this.activeParticipants.remove(player);
         }
 
-        System.out.println("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//        System.out.println("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
     }
 
