@@ -95,11 +95,21 @@ public class GameSteps{
                 new WeaponCard("S", 10),
 
                 new FoeCard(30),
-                new WeaponCard("L", 20)
+                new WeaponCard("L", 20),
+
+                new FoeCard(70)
                 );
 
         game.adventureDeck.rigDeckTop(riggedCardsAdventure);
     }
+
+    @And("{string} validate number cards {int}")
+    public void validateNumberCards(String player, int numberCards){
+        int numberHand = stringToPlayerObject(player).getHand().size();
+
+        assertEquals(stringToPlayerObject(player).getHand().size(), numberCards);
+    }
+
 
     @And ("{string} validate hand {string}")
     public void validateHand(String player, String inputtedHand){
@@ -212,14 +222,158 @@ public class GameSteps{
     @And("give shields stage {int}")
     public void giveShields(int hello){
         game.earnShields(game.questCard);
-        System.out.println("OK");
     }
 
+    @And("{string} hand over 12 discard {string}")
+    public void handOver12P(String player, String info){
+        game.players[stringToIntPlayer(player)].reduceHand12(new Scanner(createQuestInputFunction(stringToPlayerObject(player), info)));
+    }
     @And("{string} sponsor draws stage {int}")
     public void sponsorDraw(String player, int stage){
         game.sponsorDraw(stringToPlayerObject(player), stage, new Scanner(""));
-        assertEquals(12, stringToPlayerObject(player).getHand().size());
+//        assertEquals(12, stringToPlayerObject(player).getHand().size());
     }
+
+
+
+    @Given("game starts 2winner_game_2winner_quest")
+    public void gameStart_2winner_game_2winner_quest(){
+        game.initializeAdventureDeck();
+        game.eventDeck.initializeDeck();
+        game.dealInitialCards();
+
+        game.adventureDeck.riggedClearHand(game.players[0].getHand());
+        game.adventureDeck.riggedClearHand(game.players[1].getHand());
+        game.adventureDeck.riggedClearHand(game.players[2].getHand());
+        game.adventureDeck.riggedClearHand(game.players[3].getHand());
+
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new FoeCard(5)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new FoeCard(5)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new FoeCard(10)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new FoeCard(20)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(5)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(10)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(15)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new FoeCard(10)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("E", 30)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("E", 30)));
+        game.adventureDeck.reshuffle();
+
+        List<QCard> riggedCards = Arrays.asList(
+                new QCard(4),
+                new QCard(3));
+        game.eventDeck.rigDeckTop(riggedCards);
+        // Made it nice and simple :)
+        List<Card> riggedCardsAdventure = Arrays.asList(
+                new FoeCard(5),
+                new FoeCard(5),
+                new FoeCard(5),
+
+                new FoeCard(10),
+                new FoeCard(10),
+
+                new WeaponCard("S", 10),
+                new WeaponCard("S", 10),
+
+                new WeaponCard("H", 10),
+                new WeaponCard("H", 10),
+
+                new FoeCard(10),
+                new FoeCard(10),
+
+                new WeaponCard("S", 10),
+                new WeaponCard("S", 10),
+
+                new WeaponCard("H", 10),
+                new WeaponCard("H", 10)
+        );
+        game.adventureDeck.rigDeckTop(riggedCardsAdventure);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     @And("completes stage 1")

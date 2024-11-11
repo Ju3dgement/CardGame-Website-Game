@@ -319,7 +319,7 @@ public class Game {
             currentPlayer.addCard(adventureDeck.drawCard());
         }
         System.out.println("Sponsor draw");
-        currentPlayer.reduceHand12(userInput);
+//        currentPlayer.reduceHand12(userInput);
     }
     public boolean doingAStage(Player player, int stageValue, Scanner userInput) {
         if (askParticipateStage(userInput, player)) {
@@ -513,6 +513,7 @@ public class Game {
                     if (askDoQuest(questMakerPlayer, scan)) {
                         doQuest(stageFull, doQuestList, this.questCard.getStages(), scan);
                         sponsorDraw(questMakerPlayer, questCard.getStages(), scan);
+                        questMakerPlayer.reduceHand12(scan);
                     }
                 } else{
                     System.out.println("Nobody wanted to sponsor: " + this.questCard);

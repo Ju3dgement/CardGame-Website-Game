@@ -32,10 +32,28 @@ Feature: A1_scenario
     And "p4" builds attack "D5,S10,L20,E30,Quit"
     And resolution stage 4
     And give shields stage 4
-    And "p3" validate hand "F5,F5,F15,F30,S10"
-    And "p3" validate shield 0
-    And "p4" validate hand "F15,F15,F40,L20"
-    And "p4" validate shield 4
     And "p2" sponsor draws stage 4
 
+    And "p1" validate number cards 9
+    And "p1" validate hand "F5,F10,F15,F15,F30,H10,B15,B15,L20"
+    And "p1" validate shield 0
+
+    # Sponsor of quest #F70 is rigged at Given step so it'll always be there
+    And "p2" hand over 12 discard "F5,H10,E30,F70"
+    And "p2" validate number cards 12
+    And "p2" validate shield 0
+
+    And "p3" validate number cards 5
+    And "p3" validate hand "F5,F5,F15,F30,S10"
+    And "p3" validate shield 0
+
+    And "p4" validate number cards 4
+    And "p4" validate hand "F15,F15,F40,L20"
+    And "p4" validate shield 4
+
+#  Scenario:
+#    Given game starts 2winner_game_2winner_quest
+#    When "p1" draws a card with "4 stages"
+#    Then "p1" accept to sponsor quest
+#    And "p1" builds quest "F5,H10,Quit,F15,S10,Quit,F15,D5,B15,Quit,F40,B15,Quit"
 
