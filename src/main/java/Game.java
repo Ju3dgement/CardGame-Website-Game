@@ -1,5 +1,7 @@
 import java.util.*;
 import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Set;
 public class Game {
     public Deck adventureDeck;
     public Player[] players;
@@ -11,7 +13,8 @@ public class Game {
     public Player questMakerPlayer;
     public List<Player> doQuestList = new ArrayList<>();
     public List<Player> activeParticipants =  new ArrayList<>();
-    public List<Player> winnerWinnerChickenDinner = new ArrayList<>();
+//    public List<Player> winnerWinnerChickenDinner = new ArrayList<>();
+    public Set<Player> winnerWinnerChickenDinner = new HashSet<>();
 
     public Game() {
         adventureDeck = new Deck();
@@ -323,21 +326,14 @@ public class Game {
     }
     public boolean doingAStage(Player player, int stageValue, Scanner userInput) {
         if (askParticipateStage(userInput, player)) {
-            System.out.println("Drew a card...");
-            player.addCard(adventureDeck.drawCard());
-            player.reduceHand12(userInput);
+//            System.out.println("Drew a card...");
+//            player.addCard(adventureDeck.drawCard());
+//            player.reduceHand12(userInput);
             return true;
         }
         return false;
     }
 
-    public boolean doingAStage2(Player player, int stageValue, Scanner userInput) {
-        System.out.println("Drew a card...");
-        player.addCard(adventureDeck.drawCard());
-        player.reduceHand12(userInput);
-        int value = player.attack(userInput);
-        return value > stageValue;
-    }
 
     public void resolutionFloor(int stageValue){
         List<Player> deleteActive = new ArrayList<>();
@@ -359,6 +355,9 @@ public class Game {
         List<Player> deleteActive = new ArrayList<>();
         for (Player player : activeParticipants) {
             if (doingAStage(player, stageValue, userInput)){
+                System.out.println("Drew a card...");
+                player.addCard(adventureDeck.drawCard());
+                player.reduceHand12(userInput);
                 continue;
             }
             deleteActive.add(player);
@@ -403,8 +402,12 @@ public class Game {
     public void earnShields(QCard questCard){
         for (Player shieldGiver : this.activeParticipants) {
             System.out.println(shieldGiver.getCharName() + " got " + questCard.getStages() + " shield(s)");
-            shieldGiver.addShield(questCard.getStages() );
+            shieldGiver.addShield(questCard.getStages());
+            if (shieldGiver.getShields() >= 7){
+                this.winnerWinnerChickenDinner.add(shieldGiver);
+            }
         }
+
 
     }
     public void doQuest(List<List<Card>> stageFull, List<Player> doQuestList, int shields, Scanner userInput) {

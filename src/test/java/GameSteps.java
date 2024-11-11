@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 public class GameSteps{
-    private Game game;
+    public Game game;
 
     @Given("Game starts")
     public void A1_Step_1(){
@@ -139,6 +139,7 @@ public class GameSteps{
     }
 
     public String createQuestInputFunction(Player player, String inputText){
+        player.sortHand();
         StringBuilder returnString = new StringBuilder();
         String[] text = inputText.split(",");
         List<Card> HardCopyHands = new ArrayList<>(player.getHand());
@@ -197,6 +198,14 @@ public class GameSteps{
     @And("{string} accept quest")
     public void acceptsQuestDrawsOnly(String player){
         game.doingAStage(stringToPlayerObject(player), 0, new Scanner("0\n"));
+        game.players[stringToIntPlayer(player)].addCard(game.adventureDeck.drawCard());
+//        game.players[stringToIntPlayer(player)].sortHand();
+        for (Player playerz : game.players){playerz.sortHand();}
+
+    }
+    @And ("{string} decline quest")
+    public void declineQueststage(String player){
+        game.doingAStage(stringToPlayerObject(player), 0, new Scanner("1\n"));
     }
 
     public int stringToIntPlayer(String playerString){
@@ -211,6 +220,7 @@ public class GameSteps{
         public void attackMobs(String player, String info){
             String scannerInput = createQuestInputFunction(stringToPlayerObject(player), info);
             game.players[stringToIntPlayer(player)].attack(new Scanner(scannerInput));
+            System.out.println("Attack");
         }
 
     @And("resolution stage {int}")
@@ -224,9 +234,29 @@ public class GameSteps{
         game.earnShields(game.questCard);
     }
 
+    @And ("validate winners {string}")
+    public void validateWinners(String stringOfPlayers) {
+        String[] playerArray = stringOfPlayers.split(",");  // Splitting the input string
+        int index = 0;
+        for (Player player : game.winnerWinnerChickenDinner) {
+            if (index < playerArray.length) {
+                assertEquals(player.toString().toLowerCase(), playerArray[index].trim().toLowerCase());
+                index++;
+            } else {
+                throw new AssertionError("Mismatch in the number of players");
+            }
+        }
+
+        if (index < playerArray.length) {
+            throw new AssertionError("Mismatch in the number of players");
+        }
+
+    }
     @And("{string} hand over 12 discard {string}")
     public void handOver12P(String player, String info){
+//        game.players[stringToIntPlayer(player)].sortHand();
         game.players[stringToIntPlayer(player)].reduceHand12(new Scanner(createQuestInputFunction(stringToPlayerObject(player), info)));
+        System.out.println("OK");
     }
     @And("{string} sponsor draws stage {int}")
     public void sponsorDraw(String player, int stage){
@@ -238,6 +268,7 @@ public class GameSteps{
 
     @Given("game starts 2winner_game_2winner_quest")
     public void gameStart_2winner_game_2winner_quest(){
+        game = new Game();
         game.initializeAdventureDeck();
         game.eventDeck.initializeDeck();
         game.dealInitialCards();

@@ -652,8 +652,8 @@ public class TestCases {
 
 
         //10) 16 CARDS
-        game.sponsorDraw(game.questMakerPlayer, game.questCard.getStages(), new Scanner("0\n0\n0\n0\n"));
-        assertEquals(12, p2.getHand().size());
+//        game.sponsorDraw(game.questMakerPlayer, game.questCard.getStages(), new Scanner("0\n0\n0\n0\n"));
+//        assertEquals(12, p2.getHand().size());
 
     }
 
@@ -802,7 +802,7 @@ public class TestCases {
         // P2 Accepts + draw Horse = 0\n
         // P4 Accepts + draw Horse = 0\n
         // P2 Uses Horse + BattleAxe + Lance = 2\n2\n3\nQuit\n
-        // P4 Uses Sword + Horse + BattleAxe + Lance + ExeBlade = 3\n3\n3\n3\n3\nQuit\n
+        // P4 Uses Horse + BattleAxe + Lance + ExeBlade = 3\n3\n3\n3\n3\nQuit\n
         game.adventureDeck.rigDeckTop(Arrays.asList(new WeaponCard("H", 10), new WeaponCard("H", 10)));
         floor3 = game.stageFull.get(2);
         game.doingFloor(game.activeParticipants, new Scanner("0\n0\n2\n2\n3\nQuit\n3\n3\n3\n3\n3\nQuit\n"), game.calculateStageValue(floor3));

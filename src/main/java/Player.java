@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.util.Collections;
 public class Player {
     private final int id;
     private final String name;
@@ -70,7 +70,7 @@ public class Player {
         }
     }
     public void reduceHand12(Scanner scannerInput){
-
+        sortHand();
         while (getHand().size() > 12) {
             printHand();
             System.out.println(name + " need to reduce hand size to 12 pick to discard(int):");
