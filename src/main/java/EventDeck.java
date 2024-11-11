@@ -70,4 +70,11 @@ public class EventDeck {
 
         return card;
     }
+
+    public void rigDeckTop(List<QCard> riggedCards) {
+        for (int i = riggedCards.size() - 1; i >= 0; i--) {
+            eventCards.add(riggedCards.get(i));  // Add each card to the end of the deck
+            eventCards.remove(i);
+        }
+    }
 }

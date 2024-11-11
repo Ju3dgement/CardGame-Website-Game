@@ -203,8 +203,9 @@ public class Player {
             return "P" + (id + 1);
         }
     }
-
-
-
+    @Override
+    public String toString(){
+        return name;
+    }
 
 }

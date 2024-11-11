@@ -620,6 +620,10 @@ public class TestCases {
         assertEquals(p1.getHand().get(2).toString(), new FoeCard(15).toString());
         assertEquals(p1.getHand().get(3).toString(), new FoeCard(15).toString());
         assertEquals(p1.getHand().get(4).toString(), new FoeCard(30).toString());
+        assertEquals(p1.getHand().get(5).toString(), new WeaponCard("H", 10).toString());
+        assertEquals(p1.getHand().get(6).toString(), new WeaponCard("B", 15).toString());
+        assertEquals(p1.getHand().get(7).toString(), new WeaponCard("B", 15).toString());
+        assertEquals(p1.getHand().get(8).toString(), new WeaponCard("L", 20).toString());
 
         // 8)
         riggedCards = Arrays.asList(new WeaponCard("B",15), new WeaponCard("S", 10));
@@ -628,14 +632,185 @@ public class TestCases {
         game.doingFloor(game.activeParticipants, new Scanner("0\n0\n0\n0\n8\n5\n3\nQuit\n6\n4\n6\nQuit\n"), game.calculateStageValue(floor3));
 
         // 9)
-        riggedCards = Arrays.asList(new FoeCard(30), new WeaponCard("S", 10), new WeaponCard("B",15));
+        riggedCards = Arrays.asList(new FoeCard(30), new WeaponCard("L", 20));
         game.adventureDeck.rigDeckTop(riggedCards);
         List<Card> floor4 = game.stageFull.get(3);
         game.doingFloor(game.activeParticipants, new Scanner("0\n0\n0\n0\n6\n5\n5\nQuit\n3\n3\n4\n4\nQuit\n"), game.calculateStageValue(floor4));
+
+        assertEquals(0, p3.getShields());
+        assertEquals(p3.getHand().get(0).toString(), new FoeCard(5).toString());
+        assertEquals(p3.getHand().get(1).toString(), new FoeCard(5).toString());
+        assertEquals(p3.getHand().get(2).toString(), new FoeCard(15).toString());
+        assertEquals(p3.getHand().get(3).toString(), new FoeCard(30).toString());
+        assertEquals(p3.getHand().get(4).toString(), new WeaponCard("H", 10).toString());
+
+//        assertEquals(4, p4.getShields());
+        assertEquals(p4.getHand().get(0).toString(), new FoeCard(15).toString());
+        assertEquals(p4.getHand().get(1).toString(), new FoeCard(15).toString());
+        assertEquals(p4.getHand().get(2).toString(), new FoeCard(40).toString());
+        assertEquals(p4.getHand().get(3).toString(), new WeaponCard("L", 20).toString());
+
 
         //10) 16 CARDS
         game.sponsorDraw(game.questMakerPlayer, game.questCard.getStages(), new Scanner("0\n0\n0\n0\n"));
         assertEquals(12, p2.getHand().size());
 
+    }
+
+
+
+    @Test
+    @DisplayName("Nothing")
+    public void a2(){
+        game.initializeAdventureDeck();
+        game.eventDeck.initializeDeck();
+        game.dealInitialCards();
+
+        game.adventureDeck.riggedClearHand(game.players[0].getHand());
+        game.adventureDeck.riggedClearHand(game.players[1].getHand());
+        game.adventureDeck.riggedClearHand(game.players[2].getHand());
+        game.adventureDeck.riggedClearHand(game.players[3].getHand());
+
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new FoeCard(5)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new FoeCard(5)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new FoeCard(10)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new FoeCard(20)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(5)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(10)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(15)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new FoeCard(10)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("E", 30)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("E", 30)));
+        game.adventureDeck.reshuffle();
+
+        EventCard currentEvent = game.eventDeck.riggedDraw(new QCard(4));
+        game.processQCard((QCard) currentEvent, game.players[0], new Scanner("0\n"));
+
+        // Built quest stage value 10/15/20/25 and stage 1 has 1 foe and 0 weapon
+        game.makeQuest(game.questMakerPlayer, game.questCard,new Scanner("2\nQuit\n0\n4\nQuit\n1\nQuit\n0\n0\n3\nQuit\n"));
+
+        List<Card> riggedCards = Arrays.asList(new FoeCard( 5), new FoeCard( 5), new FoeCard( 5));
+        game.adventureDeck.rigDeckTop(riggedCards);
+        List<Card> floor1 = game.stageFull.get(0);
+        // P2 Accepts floor req, draws F5 ~ Discard F5 == 2 0\n
+        // P3 Accepts floor req, draws F5 ~ Discard F5 == 2 0\n
+        // P4 Accepts floor req, draws F5 ~ Discard F5 == 2 0\n
+        // P2 Uses Dagger + Sword to attack = 0\n0\nQuit\n
+        // P3 Uses Dagger to attack = 3\nQuit\n
+        // P4 Uses Dagger + Sword to attack = 1\n2\nQuit\n
+        game.doingFloor(game.activeParticipants, new Scanner("0\n0\n0\n0\n0\n0\n0\n0\nQuit\n3\nQuit\n1\n2\nQuit\n"), game.calculateStageValue(floor1));
+
+        // P2 Accepts floor 1 req, draws F10 = 0\n
+        // P4 Accepts floor 1 req, draws F10 = 0\n
+        // P2 Uses Sword + Horse to attack = 1\n3\nQuit\n
+        // P4 Uses Sword + Horse to attack = 3\n4\nQuit\n
+        game.adventureDeck.rigDeckTop(Arrays.asList(new FoeCard( 10), new FoeCard( 10)));
+        List<Card> floor2 = game.stageFull.get(1);
+        game.doingFloor(game.activeParticipants, new Scanner("0\n0\n1\n3\nQuit\n3\n4\nQuit\n"), game.calculateStageValue(floor2));
+
+
+        // P2 Accepts floor 3 req, draws S10 = 0\n
+        // P4 Accepts floor 3 req, draws S10 = 0\n
+        // P2 Uses Sword + Horse to attack = 1\n2\nQuit\n
+        // P4 Uses Sword + Horse to attack = 3\n3\nQuit\n
+        game.adventureDeck.rigDeckTop(Arrays.asList(new WeaponCard("S", 10), new WeaponCard("S", 10)));
+        List<Card> floor3 = game.stageFull.get(2);
+        game.doingFloor(game.activeParticipants, new Scanner("0\n0\n1\n2\nQuit\n3\n3\nQuit\n"), game.calculateStageValue(floor3));
+
+
+        // P2 Accepts floor 4 req, draws H10 = 0\n
+        // P4 Accepts floor 4 req, draws H10 = 0\n
+        // P2 Uses Sword + BattleAxe to attack = 1\n3\nQuit\n
+        // P4 ExeBlade to attack = 7\nQuit\n
+        game.adventureDeck.rigDeckTop(Arrays.asList(new WeaponCard("H", 10), new WeaponCard("H", 10)));
+        List<Card> floor4 = game.stageFull.get(3);
+        game.doingFloor(game.activeParticipants, new Scanner("0\n0\n1\n3\nQuit\n8\nQuit\n"), game.calculateStageValue(floor4));
+
+        // ====== P2 and P4 earns 4 shields ======
+        game.earnShields((QCard)currentEvent);
+
+
+        game.moveToNextPlayer(new Scanner("\n"));
+        // P2 Declines = 1\n
+        // Ask user hand P3 = \n
+        // P3 Accepts = 0\n
+        currentEvent = game.eventDeck.riggedDraw(new QCard(3));
+        game.processQCard((QCard) currentEvent, game.hotSeat, new Scanner("1\n1\n\n0\n"));
+
+        // Built quest stage value 5/10/15
+        game.makeQuest(game.questMakerPlayer, game.questCard,new Scanner("0\nQuit\n0\nQuit\n0\nQuit\n"));
+
+        // P1 Declines = 1\n
+        // P2 Accepts + draw F10 = 0\n
+        // P4 Accepts + draw F10 = 0\n
+        // P2 Uses Sword = 2\nQuit\n
+        // P4 Uses Sword = 4\nQuit\n
+        game.adventureDeck.rigDeckTop(Arrays.asList(new FoeCard( 10), new FoeCard( 10)));
+        floor1 = game.stageFull.get(0);
+        game.doingFloor(game.activeParticipants, new Scanner("1\n0\n0\n2\nQuit\n4\nQuit\n"), game.calculateStageValue(floor1));
+
+        // P2 Accepts + draw Sword = 0\n
+        // P4 Accepts + draw Sword = 0\n
+        // P2 Uses Sword + Horse = 2\n2\nQuit\n
+        // P4 Uses Dagger + Sword = 3\n3\nQuit\n
+        game.adventureDeck.rigDeckTop(Arrays.asList(new WeaponCard("S", 10), new WeaponCard("S", 10)));
+        floor2 = game.stageFull.get(1);
+        game.doingFloor(game.activeParticipants, new Scanner("0\n0\n2\n2\nQuit\n3\n3\nQuit\n"), game.calculateStageValue(floor2));
+
+
+        // P2 Accepts + draw Horse = 0\n
+        // P4 Accepts + draw Horse = 0\n
+        // P2 Uses Horse + BattleAxe + Lance = 2\n2\n3\nQuit\n
+        // P4 Uses Sword + Horse + BattleAxe + Lance + ExeBlade = 3\n3\n3\n3\n3\nQuit\n
+        game.adventureDeck.rigDeckTop(Arrays.asList(new WeaponCard("H", 10), new WeaponCard("H", 10)));
+        floor3 = game.stageFull.get(2);
+        game.doingFloor(game.activeParticipants, new Scanner("0\n0\n2\n2\n3\nQuit\n3\n3\n3\n3\n3\nQuit\n"), game.calculateStageValue(floor3));
+
+        game.earnShields((QCard)currentEvent);
+        System.out.println("DONE");
+        assertEquals(game.players[1].getShields(), 7);
+        assertEquals(game.players[3].getShields(), 7);
+        assertTrue(game.checkWinner(game.scan));
     }
 }

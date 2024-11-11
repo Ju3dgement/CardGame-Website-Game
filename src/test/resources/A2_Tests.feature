@@ -1,0 +1,41 @@
+Feature: A1_scenario
+  Scenario: A1_scenario
+    Given Game starts
+    When "p1" draws a card with "4 stages"
+    Then "p1" decline to sponsor quest
+    And "p2" accept to sponsor quest
+    And "p2" builds quest "F5,H10,Quit,F15,S10,Quit,F15,D5,B15,Quit,F40,B15,Quit"
+    And "p1" accept quest discard "F5"
+    And "p3" accept quest discard "F5"
+    And "p4" accept quest discard "F5"
+    And "p1" builds attack "D5,S10,Quit"
+    And "p3" builds attack "S10,D5,Quit"
+    And "p4" builds attack "D5,H10,Quit"
+    And resolution stage 1
+    And "p1" accept quest
+    And "p3" accept quest
+    And "p4" accept quest
+    And "p1" builds attack "H10,S10,Quit"
+    And "p3" builds attack "B15,S10,Quit"
+    And "p4" builds attack "H10,B15,Quit"
+    And resolution stage 2
+    And "p1" validate hand "F5,F10,F15,F15,F30,H10,B15,B15,L20"
+    And "p1" validate shield 0
+    And "p3" accept quest
+    And "p4" accept quest
+    And "p3" builds attack "L20,H10,S10,Quit"
+    And "p4" builds attack "B15,S10,L20,Quit"
+    And resolution stage 3
+    And "p3" accept quest
+    And "p4" accept quest
+    And "p3" builds attack "B15,H10,L20,Quit"
+    And "p4" builds attack "D5,S10,L20,E30,Quit"
+    And resolution stage 4
+    And give shields stage 4
+    And "p3" validate hand "F5,F5,F15,F30,S10"
+    And "p3" validate shield 0
+    And "p4" validate hand "F15,F15,F40,L20"
+    And "p4" validate shield 4
+    And "p2" sponsor draws stage 4
+
+
