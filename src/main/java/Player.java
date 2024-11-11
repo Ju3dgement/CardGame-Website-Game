@@ -7,8 +7,9 @@ public class Player {
     private List<Card> hand;
     private boolean winLose = false;
     private int currentDamage;
-
     public int sponsorCardDiscarded;
+
+    public List<Card> cardsUsed;
     public Player(int id, String name) {
         this.id = id;
         this.name = name;
@@ -148,6 +149,7 @@ public class Player {
     }
 
     public int attack(Scanner userInput){
+        cardsUsed = new ArrayList<>();
         int attackValue = 0;
         Set<String> usedWeapons = new HashSet<>();
         while (true){

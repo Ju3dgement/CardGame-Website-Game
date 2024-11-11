@@ -350,9 +350,6 @@ public class Game {
         for (Player player : deleteActive){
             this.activeParticipants.remove(player);
         }
-
-//        System.out.println("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
     }
 
     public boolean doingFloor(List<Player> activeParticipants, Scanner userInput, int stageValue){
