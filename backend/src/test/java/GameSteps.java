@@ -1,10 +1,12 @@
 
 import io.cucumber.java.en.*;
+import mainPackage.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
-import static org.junit.Assert.*;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
@@ -191,8 +193,8 @@ public class GameSteps{
             game.processECard((ECard) currentEvent, stringToPlayerObject(player), new Scanner(""));
         }
 
-//        EventCard currentEvent = game.eventDeck.riggedDraw(new QCard(4));
-//        game.processQCard((QCard) currentEvent, game.players[0], new Scanner("1\n\n0\n"));
+//        mainPackage.EventCard currentEvent = game.eventDeck.riggedDraw(new mainPackage.QCard(4));
+//        game.processQCard((mainPackage.QCard) currentEvent, game.players[0], new Scanner("1\n\n0\n"));
     }
 
     @And("{string} accept quest discard {string}")
@@ -261,7 +263,7 @@ public class GameSteps{
             }
 
             if (!isWinner) {
-                throw new AssertionError("Player " + playerName + " is not a winner.");
+                throw new AssertionError("mainPackage.Player " + playerName + " is not a winner.");
             }
         }
     }

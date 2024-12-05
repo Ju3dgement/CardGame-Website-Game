@@ -1,3 +1,5 @@
+package mainPackage;
+
 public class ECard extends EventCard {
     public enum EventType { PLAGUE, QUEENS_FAVOR, PROSPERITY }
 

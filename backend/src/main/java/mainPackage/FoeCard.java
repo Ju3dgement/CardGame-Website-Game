@@ -1,3 +1,5 @@
+package mainPackage;
+
 public class FoeCard extends Card {
     public FoeCard(int value) {
         super("F", value);

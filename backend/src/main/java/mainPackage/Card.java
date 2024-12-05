@@ -1,3 +1,5 @@
+package mainPackage;
+
 public abstract class Card {
     protected String type;
     protected int value;

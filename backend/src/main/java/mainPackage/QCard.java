@@ -1,3 +1,5 @@
+package mainPackage;
+
 public class QCard extends EventCard {
     private final int stages;
 

@@ -1,3 +1,5 @@
+package mainPackage;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,6 +25,9 @@ public class EventDeck {
     }
 
     public void addCards(EventCard card, int count) {
+        if (eventCards.isEmpty()){
+            reshuffle();
+        }
         for (int i = 0; i < count; i++) {
             eventCards.add(card);
         }

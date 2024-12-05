@@ -1,3 +1,4 @@
+import mainPackage.*;
 import org.junit.jupiter.api.*;
 
 import java.util.Scanner;
