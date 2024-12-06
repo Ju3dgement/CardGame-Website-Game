@@ -3,6 +3,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +21,7 @@ public class A1Scenario {
         driver = new ChromeDriver();
     }
 
-//    @AfterEach
+    //    @AfterEach
 //    void destroyDriver() {
 //        if (driver != null) {
 //            driver.quit();
@@ -35,7 +39,7 @@ public class A1Scenario {
         Thread.sleep(5000);
 
         WebElement p1hand = driver.findElement(By.id("output-console-1"));
-        WebElement p2hand = driver.findElement(By.id("output-console-2"));
+        String p2hand = driver.findElement(By.id("output-console-2")).getText().trim();
         WebElement p3hand = driver.findElement(By.id("output-console-3"));
         WebElement p4hand = driver.findElement(By.id("output-console-4"));
         WebElement inputBox = driver.findElement(By.id("player-input")); // input box
@@ -136,9 +140,10 @@ public class A1Scenario {
         typeSubmit(inputBox, submitButton, "0"); // p2 discard
         typeSubmit(inputBox, submitButton, "0"); // p2 discard
         typeSubmit(inputBox, submitButton, "0"); // p2 discard
-        assertEquals(p2hand.getText().chars().filter(ch -> ch == '|').count(), 12);
-        assertTrue((p2hand.getText()).contains("Shields: 0"), "Shields: 0");
-        assertFalse(p2hand.getText().contains("WINNER"), "WINNER");
+
+        assertTrue((p2hand).contains("Shields: 0"), "Shields: 0");
+        assertFalse(p2hand.contains("WINNER"), "WINNER");
+        assertEquals(p2hand.chars().filter(ch -> ch == '|').count(), 12);
 
         assertFalse(p1hand.getText().contains("WINNER"), "WINNER");
 
