@@ -10,7 +10,7 @@ NOT SURE IF THIS WORKS ON MAC/LINUX. THIS ONLY RUNS FOR WINDOWS
 
 3) run Main.java
 
-4) go to backend->src->main->resources->selenium_test-><selenium test main's name>
+4) go to backend->src->test->selenium_test->java->selenium_test-><name>,java
 
 5) run <Test>.java
 
