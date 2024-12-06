@@ -11,14 +11,15 @@ public class Main {
 
         // COMMENT OUT THE ONE YOU WANT
 //        OutputController.playGame();
-        OutputController.rigA1();
-//        OutputController.rig2Winner();
+//        OutputController.rigA1();
+        OutputController.rig2Winner();
 //        OutputController.rig1Winner();
 //        OutputController.rig0Winner();
 
 
 //        Game game = new Game();
 //        game.rigA1();
+//          game.rigA2();
 //        game.playGame(false);
     }
 }

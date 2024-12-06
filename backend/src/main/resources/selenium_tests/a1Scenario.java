@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-public class SeleniumTest {
+public class a1Scenario {
     WebDriver driver;
     @BeforeAll
     static void setupAll() {
@@ -29,7 +29,7 @@ public class SeleniumTest {
         submitButton.click();
     }
     @Test
-    void A1_Scenario() throws InterruptedException {
+    void A1_Scenario_Test() throws InterruptedException {
         driver.get("http://localhost:8080/");
         Thread.sleep(5000);
 

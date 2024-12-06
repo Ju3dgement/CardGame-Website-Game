@@ -1,4 +1,3 @@
-import mainPackage.*;
 import org.junit.jupiter.api.*;
 
 import java.util.Scanner;
@@ -643,7 +642,7 @@ public class TestCases {
         assertEquals(p3.getHand().get(1).toString(), new FoeCard(5).toString());
         assertEquals(p3.getHand().get(2).toString(), new FoeCard(15).toString());
         assertEquals(p3.getHand().get(3).toString(), new FoeCard(30).toString());
-        assertEquals(p3.getHand().get(4).toString(), new WeaponCard("S", 10).toString());
+        assertEquals(p3.getHand().get(4).toString(), new WeaponCard("H", 10).toString());
 
 //        assertEquals(4, p4.getShields());
         assertEquals(p4.getHand().get(0).toString(), new FoeCard(15).toString());
@@ -810,8 +809,8 @@ public class TestCases {
 
         game.earnShields((QCard)currentEvent);
         System.out.println("DONE");
-//        assertEquals(game.players[1].getShields(), 7);
-//        assertEquals(game.players[3].getShields(), 7);
-//        assertTrue(game.checkWinner(game.scan));
+        assertEquals(game.players[1].getShields(), 7);
+        assertEquals(game.players[3].getShields(), 7);
+        assertTrue(game.checkWinner(game.scan));
     }
 }
