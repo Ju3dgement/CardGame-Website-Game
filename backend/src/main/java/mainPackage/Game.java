@@ -82,19 +82,24 @@ public class Game {
 
                 break;
             case PROSPERITY:
-                int currentPlayerIndex = currentPlayer.getCharId() - 1;
-                System.out.println(currentPlayer.getCharName() + " drew a 'Prosperity'. each player draws 2 cards.");
-                currentPlayer.addCard(adventureDeck.drawCard());
-                currentPlayer.addCard(adventureDeck.drawCard());
+//                int currentPlayerIndex = currentPlayer.getCharId() - 1;
+//                System.out.println(currentPlayer.getCharName() + " drew a 'Prosperity'. each player draws 2 cards.");
+//                currentPlayer.addCard(adventureDeck.drawCard());
+//                currentPlayer.addCard(adventureDeck.drawCard());
+//
+//
+//                for (int i = 1; i < players.length; i++) {
+//                    Player player = players[(currentPlayerIndex + i) % players.length];
+//                    player.addCard(adventureDeck.drawCard());
+//                    player.addCard(adventureDeck.drawCard());
+//
+//                }
+//                break;
 
-
-                for (int i = 1; i < players.length; i++) {
-                    Player player = players[(currentPlayerIndex + i) % players.length];
+                for (Player player : this.players){
                     player.addCard(adventureDeck.drawCard());
                     player.addCard(adventureDeck.drawCard());
-
                 }
-                break;
         }
         sortAllHand();
         eventDeck.discard(eventCard);
@@ -558,8 +563,6 @@ public class Game {
 
     }
 
-
-
     public void rigA1(){
         initializeAdventureDeck();
         eventDeck.initializeDeck();
@@ -777,6 +780,142 @@ public class Game {
         adventureDeck.rigDeckTop(riggedCardsAdventure);
         sortAllHand();
         playGame(true);
+    }
+
+    public void rigOneWinner(){
+        initializeAdventureDeck();
+        eventDeck.initializeDeck();
+
+        adventureDeck.riggedClearHand(players[0].getHand());
+        adventureDeck.riggedClearHand(players[1].getHand());
+        adventureDeck.riggedClearHand(players[2].getHand());
+        adventureDeck.riggedClearHand(players[3].getHand());
+
+        players[0].addCard(adventureDeck.riggedDraw(new FoeCard( 5)));
+        players[0].addCard(adventureDeck.riggedDraw(new FoeCard( 5)));
+        players[0].addCard(adventureDeck.riggedDraw(new FoeCard(10)));
+        players[0].addCard(adventureDeck.riggedDraw(new FoeCard(10)));
+        players[0].addCard(adventureDeck.riggedDraw(new FoeCard(15)));
+        players[0].addCard(adventureDeck.riggedDraw(new FoeCard(15)));
+        players[0].addCard(adventureDeck.riggedDraw(new FoeCard(20)));
+        players[0].addCard(adventureDeck.riggedDraw(new FoeCard(20)));
+        players[0].addCard(adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        players[0].addCard(adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        players[0].addCard(adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        players[0].addCard(adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+
+        players[1].addCard(adventureDeck.riggedDraw(new FoeCard( 25)));
+        players[1].addCard(adventureDeck.riggedDraw(new FoeCard( 30)));
+        players[1].addCard(adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        players[1].addCard(adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        players[1].addCard(adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        players[1].addCard(adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        players[1].addCard(adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        players[1].addCard(adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        players[1].addCard(adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        players[1].addCard(adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+        players[1].addCard(adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+        players[1].addCard(adventureDeck.riggedDraw(new WeaponCard("E", 30)));
+
+        players[2].addCard(adventureDeck.riggedDraw(new FoeCard( 25)));
+        players[2].addCard(adventureDeck.riggedDraw(new FoeCard( 30)));
+        players[2].addCard(adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        players[2].addCard(adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        players[2].addCard(adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        players[2].addCard(adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        players[2].addCard(adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        players[2].addCard(adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        players[2].addCard(adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        players[2].addCard(adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+        players[2].addCard(adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+        players[2].addCard(adventureDeck.riggedDraw(new WeaponCard("E", 30)));
+
+        players[3].addCard(adventureDeck.riggedDraw(new FoeCard(25)));
+        players[3].addCard(adventureDeck.riggedDraw(new FoeCard(30)));
+        players[3].addCard(adventureDeck.riggedDraw(new FoeCard(70)));
+        players[3].addCard(adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        players[3].addCard(adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        players[3].addCard(adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        players[3].addCard(adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        players[3].addCard(adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        players[3].addCard(adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        players[3].addCard(adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        players[3].addCard(adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+        players[3].addCard(adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+
+        adventureDeck.reshuffle();
+
+        List<EventCard> riggedCards = Arrays.asList(
+                new QCard(4),
+                new ECard(ECard.EventType.PLAGUE),
+                new ECard(ECard.EventType.PROSPERITY),
+                new ECard(ECard.EventType.QUEENS_FAVOR),
+                new QCard(3));
+        eventDeck.rigDeckTop(riggedCards);
+
+        List<Card> riggedCardsAdventure = Arrays.asList(
+                new FoeCard(5),
+                new FoeCard(10),
+                new FoeCard(20),
+
+                new FoeCard(15),
+                new FoeCard(5),
+                new FoeCard(25),
+
+                new FoeCard(5),
+                new FoeCard(10),
+                new FoeCard(20),
+
+                new FoeCard(5),
+                new FoeCard(10),
+                new FoeCard(20),
+
+                new FoeCard(5), // Sponsor draw
+                new FoeCard(5),
+                new FoeCard(10),
+                new FoeCard(10),
+                new FoeCard(15),
+                new FoeCard(15),
+                new FoeCard(15),
+                new FoeCard(15),
+
+                new FoeCard(25),
+                new FoeCard(25),
+                new WeaponCard("H", 10),
+                new WeaponCard("S", 10),
+                new WeaponCard("B", 15),
+                new FoeCard(40),
+                new WeaponCard("D", 5),
+                new WeaponCard("D", 5),
+
+                new FoeCard(30),
+                new FoeCard(25),
+
+                new WeaponCard("B", 15),
+                new WeaponCard("H", 10),
+                new FoeCard(50),
+
+                new WeaponCard("S", 10),
+                new WeaponCard("S", 10),
+
+                new FoeCard(40),
+                new FoeCard(50),
+
+                new WeaponCard("H", 10),
+                new WeaponCard("H", 10),
+                new WeaponCard("H", 10),
+                new WeaponCard("S", 10),
+                new WeaponCard("S", 10),
+                new WeaponCard("S", 10),
+                new WeaponCard("S", 10),
+                new FoeCard(35)
+
+        );
+        adventureDeck.rigDeckTop(riggedCardsAdventure);
+        sortAllHand();
+        playGame(true);
+
+
     }
 
 }

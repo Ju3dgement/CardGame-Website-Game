@@ -12,14 +12,18 @@ public class Main {
         // COMMENT OUT THE ONE YOU WANT
 //        OutputController.playGame();
 //        OutputController.rigA1();
-        OutputController.rig2Winner();
-//        OutputController.rig1Winner();
+//        OutputController.rig2Winner();
+        OutputController.rig1Winner();
 //        OutputController.rig0Winner();
 
 
+
+
+        // ===== This is just for debugging ====
 //        Game game = new Game();
 //        game.rigA1();
-//          game.rigA2();
+//        game.rigA2();
+//        game.rigOneWinner();
 //        game.playGame(false);
     }
 }
