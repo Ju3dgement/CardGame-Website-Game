@@ -199,7 +199,7 @@ Feature: 4 scenario cases requirements
     And "p1" validate number cards 12
     And "p2" validate number cards 11
     And "p3" validate number cards 11
-    And "p3" validate number cards 11
+    And "p4" validate number cards 11
     And "p1" validate shield 0
     And "p2" validate shield 0
     And "p3" validate shield 0

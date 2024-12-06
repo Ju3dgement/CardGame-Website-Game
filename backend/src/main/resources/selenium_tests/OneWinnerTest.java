@@ -3,8 +3,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 public class OneWinnerTest {
     WebDriver driver;
     @BeforeAll
@@ -23,9 +24,9 @@ public class OneWinnerTest {
 //        }
 //    }
     public void typeSubmit(WebElement inputBox, WebElement submitButton, String input) throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(750);
         inputBox.sendKeys(input);
-        Thread.sleep(1000);
+        Thread.sleep(750);
         submitButton.click();
     }
     @Test
@@ -156,25 +157,26 @@ public class OneWinnerTest {
         typeSubmit(inputBox, submitButton, "0"); // p1 discard F15
         typeSubmit(inputBox, submitButton, "0"); // p1 discard F15
 
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         assertTrue((p1hand.getText()).contains("F25 | F25 | F35 | D5 | D5 | S10 | S10 | S10 | S10 | H10 | H10 | H10 |"), "F25 | F25 | F35 | D5 | D5 | S10 | S10 | S10 | S10 | H10 | H10 | H10 |");
         assertTrue((p1hand.getText()).contains("Shields: 0"), "Shields: 0");
         assertEquals(p1hand.getText().chars().filter(ch -> ch == '|').count(), 12);
+        assertFalse(p1hand.getText().contains("WINNER"), "WINNER");
 
-        Thread.sleep(1000);
         assertTrue((p2hand.getText()).contains("F15 | F25 | F30 | F40 | S10 | S10 | S10 | H10 | E30 |"), "F10 | F15 | F15 | F25 | F30 | F40 | F50 | L20 | L20 |");
         assertTrue((p2hand.getText()).contains("Shields: 5"), "Shields: 5");
         assertEquals(p2hand.getText().chars().filter(ch -> ch == '|').count(), 9);
+        assertFalse(p2hand.getText().contains("WINNER"), "WINNER");
 
-        Thread.sleep(1000);
         assertTrue((p3hand.getText()).contains("F10 | F25 | F30 | F40 | F50 | S10 | S10 | H10 | H10 | L20 |"), "F10 | F25 | F30 | F40 | F50 | S10 | S10 | H10 | H10 | L20 |");
         assertTrue((p3hand.getText()).contains("Shields: 7"), "Shields: 7");
         assertEquals(p3hand.getText().chars().filter(ch -> ch == '|').count(), 10);
+        assertTrue(p3hand.getText().contains("WINNER"), "WINNER");
 
-        Thread.sleep(1000);
         assertTrue((p4hand.getText()).contains("F25 | F25 | F30 | F50 | F70 | D5 | D5 | S10 | S10 | B15 | L20 |"), "F25 | F25 | F30 | F50 | F70 | D5 | D5 | S10 | S10 | B15 | L20 |");
         assertTrue((p4hand.getText()).contains("Shields: 4"), "Shields: 4");
         assertEquals(p4hand.getText().chars().filter(ch -> ch == '|').count(), 11);
+        assertFalse(p4hand.getText().contains("WINNER"), "WINNER");
 
 
     }

@@ -381,7 +381,99 @@ public class OutputController {
         game.sortAllHand();
         game.playGame(true);
     }
-    public static void rig0Winner(){}
+    public static void rig0Winner(){
+        game.initializeAdventureDeck();
+        game.eventDeck.initializeDeck();
+
+        game.adventureDeck.riggedClearHand(game.players[0].getHand());
+        game.adventureDeck.riggedClearHand(game.players[1].getHand());
+        game.adventureDeck.riggedClearHand(game.players[2].getHand());
+        game.adventureDeck.riggedClearHand(game.players[3].getHand());
+
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new FoeCard( 50)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new FoeCard( 70)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("D", 5)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("S", 10)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("H", 10)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("B", 15)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+        game.players[0].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+
+
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new FoeCard( 5)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new FoeCard( 5)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new FoeCard( 10)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new FoeCard( 15)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new FoeCard( 15)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new FoeCard( 20)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new FoeCard( 20)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new FoeCard( 25)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new FoeCard( 30)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new FoeCard( 30)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new FoeCard( 40)));
+        game.players[1].addCard(game.adventureDeck.riggedDraw(new WeaponCard("E", 30)));
+
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(5)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(5)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(10)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(15)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(15)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(20)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(20)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(25)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(25)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(30)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new FoeCard(40)));
+        game.players[2].addCard(game.adventureDeck.riggedDraw(new WeaponCard("L", 20)));
+
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new FoeCard( 5)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new FoeCard( 5)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new FoeCard( 10)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new FoeCard( 15)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new FoeCard( 15)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new FoeCard( 20)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new FoeCard( 20)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new FoeCard( 25)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new FoeCard( 25)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new FoeCard( 30)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new FoeCard( 50)));
+        game.players[3].addCard(game.adventureDeck.riggedDraw(new WeaponCard("E", 30)));
+
+        game.adventureDeck.reshuffle();
+
+        List<EventCard> riggedCards = Arrays.asList(
+                new QCard(2));
+        game.eventDeck.rigDeckTop(riggedCards);
+
+        List<Card> riggedCardsAdventure = Arrays.asList(
+                new FoeCard(5),
+                new FoeCard(15),
+                new FoeCard(10),
+
+                new FoeCard(5),
+                new FoeCard(10),
+                new FoeCard(15),
+                new WeaponCard("D", 5),
+                new WeaponCard("D", 5),
+                new WeaponCard("D", 5),
+                new WeaponCard("D", 5),
+                new WeaponCard("S", 10),
+                new WeaponCard("S", 10),
+                new WeaponCard("S", 10),
+                new WeaponCard("H", 10),
+                new WeaponCard("H", 10),
+                new WeaponCard("H", 10),
+                new WeaponCard("H", 10)
+
+                );
+        game.adventureDeck.rigDeckTop(riggedCardsAdventure);
+        game.sortAllHand();
+        game.playGame(true);
+    }
 
 
     public static void redirectSystemOutput() {
@@ -428,6 +520,10 @@ public class OutputController {
             }
 
             printHand.append("\n\nShields: ").append(game.players[playerId - 1].getShields());
+
+            if (game.players[playerId - 1].getShields() >= 7){
+                printHand.append("\n\nWINNER");
+            }
             return printHand.toString();
         }
         return "No data available for player " + playerId;

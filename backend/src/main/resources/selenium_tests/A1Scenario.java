@@ -3,9 +3,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-public class a1Scenario {
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class A1Scenario {
     WebDriver driver;
     @BeforeAll
     static void setupAll() {
@@ -23,9 +24,9 @@ public class a1Scenario {
 //        }
 //    }
     public void typeSubmit(WebElement inputBox, WebElement submitButton, String input) throws InterruptedException {
-//        Thread.sleep(1000);
+        Thread.sleep(750);
         inputBox.sendKeys(input);
-//        Thread.sleep(1000);
+        Thread.sleep(750);
         submitButton.click();
     }
     @Test
@@ -92,9 +93,10 @@ public class a1Scenario {
         typeSubmit(inputBox, submitButton, "5"); // p4 axe
         typeSubmit(inputBox, submitButton, "Quit");
 
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         assertTrue((p1hand.getText()).contains("F5 | F10 | F15 | F15 | F30 | H10 | B15 | B15 | L20 |"), "F5 | F10 | F15 | F15 | F30 | H10 | B15 | B15 | L20 |");
         assertTrue((p1hand.getText()).contains("Shields: 0"), "Shields: 0");
+        assertEquals(p1hand.getText().chars().filter(ch -> ch == '|').count(), 9);
 
         typeSubmit(inputBox, submitButton, "0"); // p3 ask accept stage
         typeSubmit(inputBox, submitButton, "0"); // p4 ask accept stage
@@ -119,19 +121,26 @@ public class a1Scenario {
         typeSubmit(inputBox, submitButton, "4"); // p4 excalibur
         typeSubmit(inputBox, submitButton, "Quit");
 
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         assertTrue((p3hand.getText()).contains("F5 | F5 | F15 | F30 | S10 |"), "F5 | F5 | F15 | F30 | S10 |");
         assertTrue((p3hand.getText()).contains("Shields: 0"), "Shields: 0");
+        assertEquals(p3hand.getText().chars().filter(ch -> ch == '|').count(), 5);
+        assertFalse(p3hand.getText().contains("WINNER"), "WINNER");
 
-        assertTrue((p4hand.getText()).contains("F15 | F15 | F40 | L20"), "F15 | F15 | F40 | L20");
+        assertTrue((p4hand.getText()).contains("F15 | F15 | F40 | L20 |"), "F15 | F15 | F40 | L20 |");
         assertTrue((p4hand.getText()).contains("Shields: 4"), "Shields: 4");
+        assertEquals(p4hand.getText().chars().filter(ch -> ch == '|').count(), 4);
+        assertFalse(p4hand.getText().contains("WINNER"), "WINNER");
 
         typeSubmit(inputBox, submitButton, "0"); // p2 discard
         typeSubmit(inputBox, submitButton, "0"); // p2 discard
         typeSubmit(inputBox, submitButton, "0"); // p2 discard
         typeSubmit(inputBox, submitButton, "0"); // p2 discard
-        Thread.sleep(1000);
         assertEquals(p2hand.getText().chars().filter(ch -> ch == '|').count(), 12);
+        assertTrue((p2hand.getText()).contains("Shields: 0"), "Shields: 0");
+        assertFalse(p2hand.getText().contains("WINNER"), "WINNER");
+
+        assertFalse(p1hand.getText().contains("WINNER"), "WINNER");
 
     }
 }

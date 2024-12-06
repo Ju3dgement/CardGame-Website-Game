@@ -157,12 +157,8 @@ public class Game {
             this.eventDeck.discard(questCard);
             this.questCard = questCard;
             this.questMakerPlayer = currentPlayer;
-//            if (player.checkEnoughFoe(questCard.getStages())) {
             return true;
-//            } else {
-//                showNotEnoughFoeMessage(questCard);
-//                return false;
-//            }
+
         }
         return false;
     }
@@ -304,7 +300,6 @@ public class Game {
 
 
     public boolean askDoQuest(Player playerWhoMadeQuest, Scanner userInput) {
-//        Scanner takeInput = new Scanner(System.in);
         List<Player> doQuestList = new ArrayList<>();
 
         for (Player player : getOtherPlayers(playerWhoMadeQuest)) {
@@ -331,6 +326,7 @@ public class Game {
         return response == 0;
     }
     public void sponsorDraw(Player currentPlayer, int numberStages, Scanner userInput){
+
         while (currentPlayer.sponsorCardDiscarded != 0){
             currentPlayer.addCard(adventureDeck.drawCard());
             currentPlayer.sponsorCardDiscarded--;
@@ -338,16 +334,11 @@ public class Game {
         for (int i = 0; i < numberStages; i++){
             currentPlayer.addCard(adventureDeck.drawCard());
         }
-        System.out.println("Sponsor draw");
-//        currentPlayer.sponsorCardDiscarded = 0;
-//        currentPlayer.reduceHand12(userInput);
+        System.out.println(currentPlayer.getCharName() + " " + "Sponsor draw");
         sortAllHand();
     }
     public boolean doingAStage(Player player, int stageValue, Scanner userInput) {
         if (askParticipateStage(userInput, player)) {
-//            System.out.println("Drew a card...");
-//            player.addCard(adventureDeck.drawCard());
-//            player.reduceHand12(userInput);
             return true;
         }
         return false;
@@ -388,26 +379,6 @@ public class Game {
         }
         resolutionFloor(stageValue);
 
-//        deleteActive = new ArrayList<>();
-//        for (mainPackage.Player player : this.activeParticipants) {
-//            int attackValue = player.attack(userInput);
-//            System.out.println("You hit the enemy mob with an attack strength of: " + attackValue);
-//
-//            if (attackValue < stageValue){
-////                this.activeParticipants.remove(player);
-//                deleteActive.add(player);
-//            }
-//
-//        }
-//
-//        for (mainPackage.Player player : deleteActive){
-//            this.activeParticipants.remove(player);
-//        }
-
-
-
-
-
         for (Player player : this.activeParticipants) {
             System.out.println("Resolution + " + player.getCharName() + " : SUCCESS");
         }
@@ -444,16 +415,7 @@ public class Game {
             }
 
         }
-
-        // Award shields to remaining players
         earnShields(this.questCard);
-//        for (mainPackage.Player shieldGiver : activeParticipants) {
-//            System.out.println(shieldGiver.getCharName() + " got " + shields + " shield(s)");
-//            shieldGiver.addShield(shields);
-//        }
-
-
-
     }
 
 //    public void doQuest(List<List<mainPackage.Card>> stageFull, List<mainPackage.Player> doQuestList, int shields, Scanner userInput) {

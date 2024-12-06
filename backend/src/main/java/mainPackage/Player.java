@@ -79,10 +79,11 @@ public class Player {
         sortHand();
         while (getHand().size() > 12) {
             printHand();
-            System.out.println(name + " need to reduce hand size to 12 pick to discard(int):");
+            System.out.println(name + " need to reduce hand size to 12 pick to discard(int):\n");
             int indexDelete = scannerInput.nextInt();
+            System.out.println("Discarded: " + getHand().get(indexDelete).toString() + "\n");
             removeCardHand(getHand().get(indexDelete));
-            clearScreen();
+
         }
         clearScreen();
         sortHand();
@@ -149,16 +150,6 @@ public class Player {
         hand.remove(card);
     }
 
-    public void removeCardHandString(String card){
-        for (Card playerCard : hand){
-            if (Objects.equals(playerCard.toString(), card)){
-                removeCardHand(playerCard);
-                return;
-            }
-        }
-        System.out.println("Not valid card");
-    }
-
     public int attack(Scanner userInput){
         cardsUsed = new ArrayList<>();
         int attackValue = 0;
@@ -188,7 +179,7 @@ public class Player {
             }
         }
 
-        System.out.print("Weapons Used in this stage: ");
+        System.out.print("\nWeapons Used in this stage: \n");
         for (String weaponName : usedWeapons){
             System.out.print(weaponName + ", ");
         }
@@ -206,7 +197,6 @@ public class Player {
         }
         return numberOfFoes >= stages;
     }
-
 
     public String getNextPlayerName(){
         if (id >= 4){

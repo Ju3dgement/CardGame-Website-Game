@@ -1,10 +1,22 @@
+//const updateConsoleOutput = () => {
+//    fetch('/console-output')
+//        .then(response => response.text())
+//        .then(data => {
+//            document.getElementById('output-console-extra').innerText = data;
+//        })
+////        .catch(err => console.error('Error fetching console output:', err));
+//        .catch(() => {});
+//};
+
 const updateConsoleOutput = () => {
     fetch('/console-output')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('output-console-extra').innerText = data;
+            const consoleElement = document.getElementById('output-console-extra');
+            consoleElement.innerText = data;
+
+            consoleElement.scrollTop = consoleElement.scrollHeight;
         })
-//        .catch(err => console.error('Error fetching console output:', err));
         .catch(() => {});
 };
 
@@ -17,8 +29,8 @@ const submitPlayerInput = () => {
         body: `input=${encodeURIComponent(input)}`
     })
         .then(() => {
-            document.getElementById('player-input').value = ''; // Clear input field
-            return fetch('/console-output'); // Fetch updated console output
+            document.getElementById('player-input').value = '';
+            return fetch('/console-output');
         })
         .then(response => response.text())
         .then(data => {
@@ -30,7 +42,7 @@ const submitPlayerInput = () => {
 
 const updatePlayerHands = () => {
     for (let i = 1; i <= 4; i++) {
-        document.getElementById(`output-console-${i}`).innerText = "";
+//        document.getElementById(`output-console-${i}`).innerText = "";
         fetch(`/player-hand/${i}`)
             .then(response => response.text())
             .then(data => {
@@ -44,7 +56,7 @@ const updatePlayerHands = () => {
 setInterval(() => {
     updateConsoleOutput();
     updatePlayerHands();
-}, 1000);
+}, 100);
 
 document.getElementById('submit-console')?.addEventListener('click', () => {
     fetch('/clear-console', { method: 'POST' })
@@ -58,5 +70,4 @@ document.getElementById('submit-console')?.addEventListener('click', () => {
         .catch(() => {});
 });
 
-// Event listener for submitting player input
 document.getElementById('submit-player-input').addEventListener('click', submitPlayerInput);
