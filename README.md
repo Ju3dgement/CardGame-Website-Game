@@ -1,1 +1,19 @@
-# A1-GarrisonSu-101232418
+# A3-GarrisonSu-101232418
+
+This is for Fall2024 COMP4004A Assignment 3
+
+NOT SURE IF THIS WORKS ON MAC/LINUX. THIS ONLY RUNS FOR WINDOWS
+
+1) go to backend->src->main->java->mainPackage->Main.java
+
+2) in the Main.java you MUST uncomment which of the 4 scenario (or the 1 random game) that is running 
+
+3) run Main.java
+
+4) go to backend->src->test->selenium_test->java->selenium_test-><name>,java
+
+5) run <Test>.java
+
+
+
+
